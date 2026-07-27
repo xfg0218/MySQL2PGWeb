@@ -17,7 +17,7 @@
 
 MySQL2PG Web 是 [MySQL2PG](https://github.com/xfg0218/MySQL2PG) 高性能数据库迁移工具的产品官网。
 
-网站采用 **Vue 3 + Vite** 构建前端，**Golang** 提供后端服务，设计风格参考 [pduzc.com](https://pduzc.com/)，支持 **深色/浅色主题切换** 和 **中文/英文双语展示**。
+网站采用 **Vue 3 + Vite** 构建前端，**Golang** 提供后端服务，支持 **深色/浅色主题切换** 和 **中文/英文双语展示**。
 
 ### ✨ 特色功能
 
