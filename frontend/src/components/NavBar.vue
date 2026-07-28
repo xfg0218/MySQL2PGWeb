@@ -8,9 +8,9 @@
       <li><a href="#pain">{{ t.nav.pain }}</a></li>
       <li><a href="#compare">{{ t.nav.compare }}</a></li>
       <li><a href="#features">{{ t.nav.features }}</a></li>
-      <li><a href="#metrics">{{ t.nav.metrics }}</a></li>
-      <li><a href="#flow">{{ t.nav.flow }}</a></li>
-      <li><a href="#quickstart">{{ t.nav.quickstart }}</a></li>
+      <li><a href="#architecture">{{ t.nav.architecture }}</a></li>
+      <li><a href="#sqldemo">SQL</a></li>
+      <li><a href="#faq">{{ t.nav.faq }}</a></li>
     </ul>
     <div class="navbar-actions">
       <button class="btn-ghost btn-toggle" @click="toggleLang" :title="lang === 'zh' ? 'Switch to English' : '切换到中文'">
