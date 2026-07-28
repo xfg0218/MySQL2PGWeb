@@ -38,11 +38,17 @@ The site is built with **Vue 3 + Vite** on the frontend and **Golang** on the ba
 | Hero | Grid drift animation background + product positioning + core stats (100+ types / 113 functions / 42 views / 500+ tests) |
 | Pain Points | 8 cards showcasing the limitations of traditional DTS tools |
 | Comparison | 13-dimension ✅/❌ comparison table (Traditional DTS vs MySQL2PG) |
+| Competitive Landscape | 4-column comparison table (MySQL2PG vs pgloader vs AWS DMS vs Azure DMS), 10 feature dimensions |
 | Core Features | 8 feature cards (schema/data/views/indexes/functions/permissions/validation/MPP) |
+| Architecture | 5-stage pipeline visualization: MySQL Source → SQL Parser → Type Mapping Engine → Compatibility Validator → PG Generator |
+| SQL Conversion Demo | 3 Before/After code comparisons (table/index/function) with tab switching + syntax highlighting |
+| Report Preview | Simulated browser window showing report content (stats summary + risk alerts + validation results) |
+| Pre-migration Assessment | 4 risk category cards (schema/functions/data volume/privileges) with green/amber severity indicators |
 | Metrics | 4 animated counters (sync speed / accuracy / test cases / concurrency boost) |
 | Migration Flow | 8-step card-based pipeline + summary statistics |
 | Compatibility | MySQL 5.7~9.0+ / PostgreSQL 12~18 version matrix |
 | Quick Start | 3-step setup with syntax-highlighted command examples |
+| FAQ | 10 frequently asked questions in expandable accordion panels |
 
 ---
 
@@ -72,11 +78,17 @@ MySQL2PGWeb/
 │   │   │   ├── HeroSection.vue    # Hero section (grid animation background)
 │   │   │   ├── PainPoints.vue     # Industry pain point cards
 │   │   │   ├── Comparison.vue     # DTS comparison table
+│   │   │   ├── Competitors.vue    # Competitive landscape table (4 columns)
 │   │   │   ├── Features.vue       # Core feature cards
+│   │   │   ├── Architecture.vue   # Architecture pipeline diagram (5 stages)
+│   │   │   ├── SqlDemo.vue        # SQL before/after conversion demo (tab switching)
+│   │   │   ├── ReportPreview.vue  # Migration report preview (simulated browser window)
+│   │   │   ├── Assessment.vue     # Pre-migration risk assessment cards
 │   │   │   ├── Metrics.vue        # Performance metrics (counter animation)
 │   │   │   ├── FlowSteps.vue      # 8-step migration flow cards
 │   │   │   ├── Versions.vue       # Version compatibility
 │   │   │   ├── QuickStart.vue     # Quick start guide
+│   │   │   ├── FAQ.vue            # FAQ accordion
 │   │   │   └── FooterBar.vue      # Footer
 │   │   ├── composables/
 │   │   │   ├── useTheme.js        # Theme toggle composable (dark/light + localStorage)
@@ -232,11 +244,17 @@ make clean    # Remove dist/, node_modules/, and the binary
 | **HeroSection** | Full-viewport hero. 40px grid drift animation background, gradient text heading, 4 core stats |
 | **PainPoints** | 8 pain point cards with red icons + red border on hover, showcasing limitations of traditional DTS tools |
 | **Comparison** | 13-row comparison table. Left column: Traditional DTS (red ❌), right column: MySQL2PG (green ✅) |
+| **Competitors** | 4-column competitive landscape table. MySQL2PG vs pgloader vs AWS DMS vs Azure DMS, 10 feature dimensions with ✓/— indicators |
 | **Features** | 8 feature cards with amber icons + glow effect on hover, amber metric tags at the bottom |
+| **Architecture** | 5-stage pipeline visualization with pulsing arrow animations, responsive horizontal/vertical layout |
+| **SqlDemo** | 3 SQL conversion pairs with tab switching (table/index/function), side-by-side MySQL → PostgreSQL syntax-highlighted code |
+| **ReportPreview** | Left: 4 report section cards. Right: simulated browser window with stats summary + risk alert list |
+| **Assessment** | 4 risk assessment cards (green/amber top color bars + scores), bottom assessment command display |
 | **Metrics** | 4 performance indicators with IntersectionObserver-triggered counter animation; resets and replays on language switch |
 | **FlowSteps** | 8-step migration flow card grid + 3 summary statistics |
 | **Versions** | MySQL / PostgreSQL version compatibility matrix tags |
 | **QuickStart** | 3-step quick start cards with syntax-highlighted YAML config and shell commands |
+| **FAQ** | 10 FAQ items in accordion layout with click to expand/collapse, CSS max-height transition animation |
 | **FooterBar** | Minimal footer with GitHub link + License + copyright |
 
 ---
