@@ -41,9 +41,10 @@ The site is built with **Vue 3 + Vite** on the frontend and **Golang** on the ba
 | Competitive Landscape | 4-column comparison table (MySQL2PG vs pgloader vs AWS DMS vs Azure DMS), 10 feature dimensions |
 | Core Features | 8 feature cards (schema/data/views/indexes/functions/permissions/validation/MPP) |
 | Architecture | 5-stage pipeline visualization: MySQL Source → SQL Parser → Type Mapping Engine → Compatibility Validator → PG Generator |
-| SQL Conversion Demo | 3 Before/After code comparisons (table/index/function) with tab switching + syntax highlighting |
+| SQL Conversion Demo | 6 Before/After code comparisons (table/index/function/view/user/privilege) with tab switching + syntax highlighting |
 | Report Preview | Simulated browser window showing report content (stats summary + risk alerts + validation results) |
 | Pre-migration Assessment | 4 risk category cards (schema/functions/data volume/privileges) with green/amber severity indicators |
+| Security & Data Safety | 6 security guarantee cards (credentials/encryption/local-only/zero-modification/transparency/rollback) + summary banner |
 | Metrics | 4 animated counters (sync speed / accuracy / test cases / concurrency boost) |
 | Migration Flow | 8-step card-based pipeline + summary statistics |
 | Compatibility | MySQL 5.7~9.0+ / PostgreSQL 12~18 version matrix |
@@ -84,6 +85,7 @@ MySQL2PGWeb/
 │   │   │   ├── SqlDemo.vue        # SQL before/after conversion demo (tab switching)
 │   │   │   ├── ReportPreview.vue  # Migration report preview (simulated browser window)
 │   │   │   ├── Assessment.vue     # Pre-migration risk assessment cards
+│   │   │   ├── Security.vue       # Security & data safety guarantee cards
 │   │   │   ├── Metrics.vue        # Performance metrics (counter animation)
 │   │   │   ├── FlowSteps.vue      # 8-step migration flow cards
 │   │   │   ├── Versions.vue       # Version compatibility
@@ -247,9 +249,10 @@ make clean    # Remove dist/, node_modules/, and the binary
 | **Competitors** | 4-column competitive landscape table. MySQL2PG vs pgloader vs AWS DMS vs Azure DMS, 10 feature dimensions with ✓/— indicators |
 | **Features** | 8 feature cards with amber icons + glow effect on hover, amber metric tags at the bottom |
 | **Architecture** | 5-stage pipeline visualization with pulsing arrow animations, responsive horizontal/vertical layout |
-| **SqlDemo** | 3 SQL conversion pairs with tab switching (table/index/function), side-by-side MySQL → PostgreSQL syntax-highlighted code |
+| **SqlDemo** | 6 SQL conversion pairs with tab switching (table/index/function/view/user/privilege), side-by-side MySQL → PostgreSQL syntax-highlighted code |
 | **ReportPreview** | Left: 4 report section cards. Right: simulated browser window with stats summary + risk alert list |
 | **Assessment** | 4 risk assessment cards (green/amber top color bars + scores), bottom assessment command display |
+| **Security** | 6 security guarantee cards (credentials/encryption/local-only/zero-modification/transparency/rollback) with amber glow on hover + summary banner |
 | **Metrics** | 4 performance indicators with IntersectionObserver-triggered counter animation; resets and replays on language switch |
 | **FlowSteps** | 8-step migration flow card grid + 3 summary statistics |
 | **Versions** | MySQL / PostgreSQL version compatibility matrix tags |

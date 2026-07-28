@@ -41,9 +41,10 @@ MySQL2PG Web 是 [MySQL2PG](https://github.com/xfg0218/MySQL2PG) 高性能数据
 | 竞品横向对比 | 4 列对比表（MySQL2PG vs pgloader vs AWS DMS vs Azure DMS），10 个功能维度 |
 | 核心功能 | 8 大功能卡片（表结构/数据/视图/索引/函数/权限/校验/MPP） |
 | 架构原理图 | 5 步流水线可视化：MySQL 源库 → SQL 解析器 → 类型映射引擎 → 兼容性校验 → PG 生成器 |
-| SQL 转换示例 | 3 组 Before/After 代码对比（表结构/索引/函数），带标签切换 + 语法高亮 |
+| SQL 转换示例 | 6 组 Before/After 代码对比（表结构/索引/函数/视图/用户/权限），带标签切换 + 语法高亮 |
 | 迁移报告预览 | 模拟浏览器窗口展示报告内容（统计摘要 + 风险告警 + 校验结果） |
 | 迁移前评估 | 4 张风险类别卡片（表结构/函数/数据量/权限），绿色/琥珀色严重度指示 |
+| 安全与数据保障 | 6 张安全保障卡片（凭证安全/传输加密/纯本地运行/源库零修改/开源透明/可回滚设计）+ 底部总结横幅 |
 | 性能指标 | 4 个数字计数器动画（同步速度/准确率/测试用例/并发加速） |
 | 转换流程 | 8 步卡片式流水线展示 + 汇总统计 |
 | 版本兼容 | MySQL 5.7~9.0+ / PostgreSQL 12~18 |
@@ -84,6 +85,7 @@ MySQL2PGWeb/
 │   │   │   ├── SqlDemo.vue        # SQL 转换前后对比（标签切换）
 │   │   │   ├── ReportPreview.vue  # 迁移报告预览（模拟浏览器窗口）
 │   │   │   ├── Assessment.vue     # 迁移前风险评估卡片
+│   │   │   ├── Security.vue       # 安全与数据保障卡片
 │   │   │   ├── Metrics.vue        # 性能指标（计数动画）
 │   │   │   ├── FlowSteps.vue      # 8 步转换流程卡片
 │   │   │   ├── Versions.vue       # 版本兼容性
@@ -247,9 +249,10 @@ make clean    # 删除 dist/、node_modules/、二进制文件
 | **Competitors** | 4 列竞品对比表。MySQL2PG vs pgloader vs AWS DMS vs Azure DMS，10 个功能维度 ✓/— 标识 |
 | **Features** | 8 张功能卡片，金色图标 + hover 发光效果，底部金色指标标签 |
 | **Architecture** | 5 步流水线可视化，箭头脉冲动画连接各阶段，响应式横/纵布局切换 |
-| **SqlDemo** | 3 组 SQL 转换对比，标签切换（表结构/索引/函数），左右并排 MySQL → PostgreSQL 代码高亮 |
+| **SqlDemo** | 6 组 SQL 转换对比，标签切换（表结构/索引/函数/视图/用户/权限），左右并排 MySQL → PostgreSQL 代码高亮 |
 | **ReportPreview** | 左侧 4 张报告内容卡片 + 右侧模拟浏览器窗口（统计摘要 + 风险告警列表） |
 | **Assessment** | 4 张风险评估卡片（绿色/琥珀色顶部色条 + 分数），底部评估命令展示 |
+| **Security** | 6 张安全保障卡片（凭证安全/传输加密/纯本地运行/源库零修改/开源透明/可回滚设计），hover 琥珀色发光 + 底部总结横幅 |
 | **Metrics** | 4 个性能指标，IntersectionObserver 触发数字计数动画，语言切换时重置并重新播放 |
 | **FlowSteps** | 8 步转换流程卡片网格 + 3 项汇总统计 |
 | **Versions** | MySQL / PostgreSQL 版本兼容矩阵标签 |
