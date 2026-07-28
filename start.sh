@@ -41,7 +41,7 @@ fi
 
 # ── 构建前端 ──
 info "构建前端..."
-cd frontend && npm run build --silent && cd ..
+cd frontend && node ./node_modules/vite/bin/vite.js build && cd ..
 ok "前端构建完成 → frontend/dist/"
 
 # ── 构建 Go 服务 ──
