@@ -37,7 +37,6 @@ The site is built with **Vue 3 + Vite** on the frontend and **Golang** on the ba
 |---------|-------------|
 | Hero | Grid drift animation background + product positioning + core stats (100+ types / 113 functions / 42 views / 500+ tests) |
 | Pain Points | 8 cards showcasing the limitations of traditional DTS tools |
-| Comparison | 13-dimension ✅/❌ comparison table (Traditional DTS vs MySQL2PG) |
 | Competitive Landscape | 4-column comparison table (MySQL2PG vs pgloader vs AWS DMS vs Azure DMS), 10 feature dimensions |
 | Core Features | 8 feature cards (schema/data/views/indexes/functions/permissions/validation/MPP) |
 | Architecture | 5-stage pipeline visualization: MySQL Source → SQL Parser → Type Mapping Engine → Compatibility Validator → PG Generator |
@@ -78,7 +77,6 @@ MySQL2PGWeb/
 │   │   │   ├── NavBar.vue         # Top navigation bar (theme/language toggle buttons)
 │   │   │   ├── HeroSection.vue    # Hero section (grid animation background)
 │   │   │   ├── PainPoints.vue     # Industry pain point cards
-│   │   │   ├── Comparison.vue     # DTS comparison table
 │   │   │   ├── Competitors.vue    # Competitive landscape table (4 columns)
 │   │   │   ├── Features.vue       # Core feature cards
 │   │   │   ├── Architecture.vue   # Architecture pipeline diagram (5 stages)
@@ -245,7 +243,6 @@ make clean    # Remove dist/, node_modules/, and the binary
 | **NavBar** | Fixed top navigation with backdrop blur. Logo, anchor links, EN/中 toggle, ☀️/🌙 toggle, GitHub button, Quick Start CTA |
 | **HeroSection** | Full-viewport hero. 40px grid drift animation background, gradient text heading, 4 core stats |
 | **PainPoints** | 8 pain point cards with red icons + red border on hover, showcasing limitations of traditional DTS tools |
-| **Comparison** | 13-row comparison table. Left column: Traditional DTS (red ❌), right column: MySQL2PG (green ✅) |
 | **Competitors** | 4-column competitive landscape table. MySQL2PG vs pgloader vs AWS DMS vs Azure DMS, 10 feature dimensions with ✓/— indicators |
 | **Features** | 8 feature cards with amber icons + glow effect on hover, amber metric tags at the bottom |
 | **Architecture** | 5-stage pipeline visualization with pulsing arrow animations, responsive horizontal/vertical layout |

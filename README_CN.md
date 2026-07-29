@@ -37,7 +37,6 @@ MySQL2PG Web 是 [MySQL2PG](https://github.com/xfg0218/MySQL2PG) 高性能数据
 |------|------|
 | Hero | 网格漂移动画背景 + 产品定位 + 核心数据统计（100+ 类型 / 113 函数 / 42 视图 / 500+ 测试） |
 | 行业痛点 | 8 张卡片展示传统 DTS 工具的功能短板 |
-| 差异化对比 | 13 个维度的 ✅/❌ 对比表（传统 DTS vs MySQL2PG） |
 | 竞品横向对比 | 4 列对比表（MySQL2PG vs pgloader vs AWS DMS vs Azure DMS），10 个功能维度 |
 | 核心功能 | 8 大功能卡片（表结构/数据/视图/索引/函数/权限/校验/MPP） |
 | 架构原理图 | 5 步流水线可视化：MySQL 源库 → SQL 解析器 → 类型映射引擎 → 兼容性校验 → PG 生成器 |
@@ -78,7 +77,6 @@ MySQL2PGWeb/
 │   │   │   ├── NavBar.vue         # 顶部导航栏（主题/语言切换按钮）
 │   │   │   ├── HeroSection.vue    # Hero 区域（网格动画背景）
 │   │   │   ├── PainPoints.vue     # 行业痛点卡片
-│   │   │   ├── Comparison.vue     # DTS 差异化对比表
 │   │   │   ├── Competitors.vue    # 竞品横向对比表（4 列）
 │   │   │   ├── Features.vue       # 核心功能卡片
 │   │   │   ├── Architecture.vue   # 架构原理图（5 步流水线）
@@ -245,7 +243,6 @@ make clean    # 删除 dist/、node_modules/、二进制文件
 | **NavBar** | 固定顶部导航，毛玻璃背景。Logo、锚点链接、EN/中切换、☀️/🌙切换、GitHub 按钮、Quick Start CTA |
 | **HeroSection** | 全屏 Hero。40px 网格漂移动画背景，渐变文字标题，4 项核心数据统计 |
 | **PainPoints** | 8 张痛点卡片，红色图标 + hover 红色边框，展示传统 DTS 工具的 8 大功能短板 |
-| **Comparison** | 13 行对比表格。左列传统 DTS（红色 ❌），右列 MySQL2PG（绿色 ✅） |
 | **Competitors** | 4 列竞品对比表。MySQL2PG vs pgloader vs AWS DMS vs Azure DMS，10 个功能维度 ✓/— 标识 |
 | **Features** | 8 张功能卡片，金色图标 + hover 发光效果，底部金色指标标签 |
 | **Architecture** | 5 步流水线可视化，箭头脉冲动画连接各阶段，响应式横/纵布局切换 |
