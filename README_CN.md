@@ -19,36 +19,39 @@
 
 MySQL2PG Web 是 [MySQL2PG](https://github.com/xfg0218/MySQL2PG) 高性能数据库迁移工具的产品官网。
 
-网站采用 **Vue 3 + Vite** 构建前端，**Golang** 提供后端服务，支持 **深色/浅色主题切换** 和 **中文/英文双语展示**。
+网站采用 **Vue 3 + Vite** 构建前端，**Golang** 提供后端服务，支持 **Vue Router 多页导航**、**深色/浅色主题切换** 和 **中文/英文双语展示**。
 
 ### ✨ 特色功能
 
 | 功能 | 说明 |
 |------|------|
+| 🧭 Vue Router | 多页导航（`/`、`/services`、`/contact`、`/faq`），路由懒加载自动代码分割 |
 | 🌓 主题切换 | 深色/浅色（Dark/Light）一键切换，CSS 变量驱动，选择持久化到 localStorage |
 | 🌐 双语支持 | 中文/英文完整翻译，所有板块内容实时切换，偏好保存到 localStorage |
-| 🎞 滚动动画 | IntersectionObserver 驱动的渐入动画，语言切换时自动重新绑定 |
+| 🎞 滚动动画 | IntersectionObserver + MutationObserver 驱动渐入动画，2 秒兜底机制确保可靠显示 |
 | 📊 数字计数 | 性能指标区域滚动触发数字递增动画 |
 | 📱 响应式布局 | 桌面/平板/手机自适应网格布局 |
 
 ### 网站内容板块
 
-| 板块 | 说明 |
-|------|------|
-| Hero | 网格漂移动画背景 + 产品定位 + 核心数据统计（100+ 类型 / 113 函数 / 42 视图 / 500+ 测试） |
-| 行业痛点 | 8 张卡片展示传统 DTS 工具的功能短板 |
-| 竞品横向对比 | 4 列对比表（MySQL2PG vs pgloader vs AWS DMS vs Azure DMS），10 个功能维度 |
-| 核心功能 | 8 大功能卡片（表结构/数据/视图/索引/函数/权限/校验/MPP） |
-| 架构原理图 | 5 步流水线可视化：MySQL 源库 → SQL 解析器 → 类型映射引擎 → 兼容性校验 → PG 生成器 |
-| SQL 转换示例 | 6 组 Before/After 代码对比（表结构/索引/函数/视图/用户/权限），带标签切换 + 语法高亮 |
-| 迁移报告预览 | 模拟浏览器窗口展示报告内容（统计摘要 + 风险告警 + 校验结果） |
-| 迁移前评估 | 4 张风险类别卡片（表结构/函数/数据量/权限），绿色/琥珀色严重度指示 |
-| 安全与数据保障 | 6 张安全保障卡片（凭证安全/传输加密/纯本地运行/源库零修改/开源透明/可回滚设计）+ 底部总结横幅 |
-| 性能指标 | 4 个数字计数器动画（同步速度/准确率/测试用例/并发加速） |
-| 转换流程 | 8 步卡片式流水线展示 + 汇总统计 |
-| 版本兼容 | MySQL 5.7~9.0+ / PostgreSQL 12~18 |
-| 快速开始 | 3 步配置 + 语法高亮命令示例 |
-| FAQ | 10 个常见问题手风琴折叠面板，点击展开/收起 |
+| 板块 | 路由 | 说明 |
+|------|------|------|
+| Hero | `/` | 产品定位 + 核心数据统计（100% 类型映射 / 100% 索引映射 / 100% 用户映射 / 100% 权限映射） |
+| 行业痛点 | `/` | 8 张卡片展示传统 DTS 工具的功能短板 |
+| 竞品横向对比 | `/` | 4 列对比表（MySQL2PG vs pgloader vs AWS DMS vs EDB MTK），9 个功能维度，✓ / ~ / — 三态标识 |
+| 核心功能 | `/` | 8 大功能卡片（表结构/数据/视图/索引/函数/权限/校验/MPP） |
+| 架构原理图 | `/` | 5 步流水线可视化：MySQL 源库 → SQL 解析器 → 类型映射引擎 → 兼容性校验 → PG 生成器 |
+| SQL 转换示例 | `/` | 6 组 Before/After 代码对比（表结构/索引/函数/视图/用户/权限），带标签切换 + 语法高亮 |
+| 迁移报告预览 | `/` | 模拟浏览器窗口展示报告内容（统计摘要 + 风险告警 + 校验结果） |
+| 迁移前评估 | `/` | 4 张风险类别卡片（表结构/函数/数据量/权限），绿色/琥珀色严重度指示 |
+| 安全与数据保障 | `/` | 3 张安全保障卡片（凭证安全 / 传输加密 / 源库零修改） |
+| 性能指标 | `/` | 4 个数字计数器动画（同步速度/准确率/全自动转换率/并发加速） |
+| 转换流程 | `/` | 8 步卡片式流水线展示 + 汇总统计 |
+| 版本兼容 | `/` | MySQL 5.7~9.0+ / PostgreSQL 12~18 |
+| 快速开始 | `/` | 3 步配置 + 语法高亮命令示例 |
+| 开源版与商业版 | `/services` | 独立页面 — 开源版 vs 商业版功能对比矩阵 |
+| 联系我们 | `/contact` | 独立页面 — GitHub Issues / 邮件 / 微信社群 / 技术文档 |
+| 常见问题 FAQ | `/faq` | 独立页面 — 9 个常见问题，原生 `<details>`/`<summary>` 手风琴，双列网格布局 |
 
 ---
 
@@ -58,8 +61,9 @@ MySQL2PG Web 是 [MySQL2PG](https://github.com/xfg0218/MySQL2PG) 高性能数据
 |------|------|------|
 | 前端框架 | Vue 3 | Composition API + `<script setup>` |
 | 构建工具 | Vite 8 | 极速 HMR 开发体验 |
+| 路由 | Vue Router 4 | HTML5 history 模式，路由懒加载代码分割 |
 | 后端服务 | Go 1.24+ | 静态文件服务 + SPA fallback 路由 |
-| 样式方案 | 原生 CSS | CSS 自定义属性 + 主题变量 + 网格动画 |
+| 样式方案 | 原生 CSS | CSS 自定义属性 + `color-mix()` + 主题变量 |
 | 状态管理 | Vue Composables | `useTheme` / `useLang`，无第三方依赖 |
 | 字体 | Inter + JetBrains Mono | Google Fonts |
 
@@ -72,12 +76,14 @@ MySQL2PGWeb/
 ├── frontend/                      # Vue 3 + Vite 前端
 │   ├── src/
 │   │   ├── assets/
-│   │   │   └── style.css          # 全局样式（深色/浅色主题 + 网格动画）
+│   │   │   ├── logo.svg           # 应用图标（青紫渐变 stylized "2"）
+│   │   │   ├── logo-full.svg      # 完整 logo（含文字 + 副标题）
+│   │   │   └── style.css          # 全局样式（深色/浅色主题 + 响应式）
 │   │   ├── components/
-│   │   │   ├── NavBar.vue         # 顶部导航栏（主题/语言切换按钮）
-│   │   │   ├── HeroSection.vue    # Hero 区域（网格动画背景）
+│   │   │   ├── NavBar.vue         # 顶部导航栏（logo + 路由链接 + 切换按钮）
+│   │   │   ├── HeroSection.vue    # Hero 区域
 │   │   │   ├── PainPoints.vue     # 行业痛点卡片
-│   │   │   ├── Competitors.vue    # 竞品横向对比表（4 列）
+│   │   │   ├── Competitors.vue    # 竞品横向对比表（4 列，三态标识）
 │   │   │   ├── Features.vue       # 核心功能卡片
 │   │   │   ├── Architecture.vue   # 架构原理图（5 步流水线）
 │   │   │   ├── SqlDemo.vue        # SQL 转换前后对比（标签切换）
@@ -88,12 +94,21 @@ MySQL2PGWeb/
 │   │   │   ├── FlowSteps.vue      # 8 步转换流程卡片
 │   │   │   ├── Versions.vue       # 版本兼容性
 │   │   │   ├── QuickStart.vue     # 快速开始指南
-│   │   │   ├── FAQ.vue            # 常见问题手风琴
+│   │   │   ├── FAQ.vue            # 常见问题手风琴（原生 <details>/<summary>）
+│   │   │   ├── Services.vue       # 开源版与商业版对比
+│   │   │   ├── Contact.vue        # 联系渠道
 │   │   │   └── FooterBar.vue      # 页脚
 │   │   ├── composables/
 │   │   │   ├── useTheme.js        # 主题切换 composable（dark/light + localStorage）
 │   │   │   └── useLang.js         # 国际化 composable（zh/en + 完整翻译字典）
-│   │   ├── App.vue                # 主应用（初始化主题/语言 + 滚动动画）
+│   │   ├── router/
+│   │   │   └── index.js           # Vue Router 配置（/、/services、/contact、/faq）
+│   │   ├── views/
+│   │   │   ├── HomePage.vue       # 首页（所有主板块）
+│   │   │   ├── ServicesPage.vue   # 版本服务独立页
+│   │   │   ├── ContactPage.vue    # 联系我们独立页
+│   │   │   └── FAQPage.vue        # FAQ 独立页
+│   │   ├── App.vue                # 根应用（router-view + 滚动动画 + MutationObserver）
 │   │   └── main.js                # 入口文件
 │   ├── dist/                      # 构建产物（npm run build 生成）
 │   ├── index.html                 # HTML 模板
@@ -102,7 +117,7 @@ MySQL2PGWeb/
 ├── server/                        # Golang 后端
 │   ├── main.go                    # HTTP 服务器 + SPA fallback
 │   └── go.mod
-├── start.sh                       # 一键启动脚本（环境检查→安装→构建→运行）
+├── start.sh                       # 启动脚本（start/stop/restart/status + 后台守护模式）
 ├── Makefile                       # 构建命令
 ├── mysql2pg-web                   # Go 二进制（make build 生成）
 ├── LICENSE
@@ -130,6 +145,15 @@ bash start.sh
 
 ```bash
 PORT=8080 bash start.sh
+```
+
+### 后台守护模式
+
+```bash
+bash start.sh start     # 后台启动（nohup）
+bash start.sh stop      # 停止运行中的进程
+bash start.sh restart   # 重启
+bash start.sh status    # 查看运行状态
 ```
 
 ### 开发模式
@@ -200,39 +224,49 @@ make clean    # 删除 dist/、node_modules/、二进制文件
 | 边框色 | `#e4e4e7` |
 | 导航栏背景 | `rgba(255, 255, 255, 0.85)` + 毛玻璃 |
 
+### Logo
+
+| 属性 | 值 |
+|------|-----|
+| 图标 | 圆角方块内 stylized "2"，青紫渐变（`#06B6D4` → `#8B5CF6` → `#A855F7`） |
+| 文字 | "MySQL**2**PG"，其中 "2" 使用 `background-clip: text` 渐变效果 |
+| 完整版 | `logo-full.svg` 含副标题 "MySQL to PostgreSQL Migration Tool" |
+
 ### 通用
 
 | 属性 | 值 |
 |------|-----|
 | 正文字体 | Inter 400/600/700/800 |
 | 等宽字体 | JetBrains Mono 400/700 |
-| 网格动画 | 40px 网格线，20s 漂移循环 |
 | 圆角 | 12px（卡片）/ 8px（按钮/代码块） |
 
 ---
 
 ## 🧩 架构说明
 
+### 路由（Vue Router）
+
+- `createWebHistory` HTML5 history 模式，4 个路由：`/`、`/services`、`/contact`、`/faq`
+- 独立页面懒加载，Vite 自动代码分割
+- Go 后端提供 SPA fallback — 所有非文件路由返回 `index.html`
+
 ### 主题切换（useTheme）
 
 - 通过 `document.documentElement.classList.toggle('light')` 切换 `html.light` 类
 - CSS 变量在 `:root` 定义深色值，`html.light` 覆盖为浅色值
 - 偏好保存到 `localStorage`，刷新后保持选择
-- 导航栏 ☀️/🌙 按钮一键切换
 
 ### 国际化（useLang）
 
 - 基于 Vue Composition API 的轻量方案，无第三方 i18n 库
 - `useLang()` 返回响应式的 `t`（当前语言翻译对象）和 `lang`（当前语言标识）
 - 所有组件通过 `t.xxx` 引用翻译内容，语言切换时自动响应式更新
-- 翻译数据定义在 `composables/useLang.js`，包含完整的中英文对照
-- 导航栏 EN/中 按钮一键切换
 
 ### 滚动动画
 
-- `App.vue` 中通过 `IntersectionObserver` 监听 `.reveal` 元素
-- 进入视口时添加 `.visible` 类触发 CSS 过渡动画（渐入 + 上移）
-- 语言切换后通过 `watch(lang)` + `nextTick` 重新绑定未触发的元素
+- `App.vue` 使用 `IntersectionObserver` + `MutationObserver` 检测并动画化 `.reveal` 元素
+- MutationObserver 监听动态添加的 DOM 节点（如路由切换时）
+- 2 秒兜底机制确保所有 `.reveal` 元素即使 Observer 失败也能正常显示
 
 ---
 
@@ -240,21 +274,23 @@ make clean    # 删除 dist/、node_modules/、二进制文件
 
 | 组件 | 说明 |
 |------|------|
-| **NavBar** | 固定顶部导航，毛玻璃背景。Logo、锚点链接、EN/中切换、☀️/🌙切换、GitHub 按钮、Quick Start CTA |
-| **HeroSection** | 全屏 Hero。40px 网格漂移动画背景，渐变文字标题，4 项核心数据统计 |
-| **PainPoints** | 8 张痛点卡片，红色图标 + hover 红色边框，展示传统 DTS 工具的 8 大功能短板 |
-| **Competitors** | 4 列竞品对比表。MySQL2PG vs pgloader vs AWS DMS vs Azure DMS，10 个功能维度 ✓/— 标识 |
-| **Features** | 8 张功能卡片，金色图标 + hover 发光效果，底部金色指标标签 |
-| **Architecture** | 5 步流水线可视化，箭头脉冲动画连接各阶段，响应式横/纵布局切换 |
-| **SqlDemo** | 6 组 SQL 转换对比，标签切换（表结构/索引/函数/视图/用户/权限），左右并排 MySQL → PostgreSQL 代码高亮 |
+| **NavBar** | 固定顶部导航，毛玻璃背景。SVG logo、路由链接、EN/中切换、☀️/🌙切换、GitHub 链接、Quick Start CTA |
+| **HeroSection** | 全屏 Hero，渐变文字标题 + 4 项核心数据统计 |
+| **PainPoints** | 8 张痛点卡片，展示传统 DTS 工具的 8 大功能短板 |
+| **Competitors** | 4 列竞品对比表：MySQL2PG vs pgloader vs AWS DMS vs EDB MTK，9 个功能维度，三态标识（✓ 完全支持 / ~ 部分支持 / — 不支持） |
+| **Features** | 8 张功能卡片（表结构/数据/视图/索引/函数/权限/校验/MPP），底部指标标签 |
+| **Architecture** | 5 步流水线可视化，响应式横/纵布局切换 |
+| **SqlDemo** | 6 组 SQL 转换对比，标签切换（表结构/索引/函数/视图/用户/权限），左右并排代码高亮 |
 | **ReportPreview** | 左侧 4 张报告内容卡片 + 右侧模拟浏览器窗口（统计摘要 + 风险告警列表） |
-| **Assessment** | 4 张风险评估卡片（绿色/琥珀色顶部色条 + 分数），底部评估命令展示 |
-| **Security** | 6 张安全保障卡片（凭证安全/传输加密/纯本地运行/源库零修改/开源透明/可回滚设计），hover 琥珀色发光 + 底部总结横幅 |
-| **Metrics** | 4 个性能指标，IntersectionObserver 触发数字计数动画，语言切换时重置并重新播放 |
+| **Assessment** | 4 张风险评估卡片（绿色/琥珀色严重度指示 + 分数） |
+| **Security** | 3 张安全保障卡片（凭证安全 / 传输加密 / 源库零修改） |
+| **Metrics** | 4 个性能指标，IntersectionObserver 触发数字计数动画 |
 | **FlowSteps** | 8 步转换流程卡片网格 + 3 项汇总统计 |
 | **Versions** | MySQL / PostgreSQL 版本兼容矩阵标签 |
 | **QuickStart** | 3 步快速开始卡片，语法高亮 YAML 配置和 Shell 命令 |
-| **FAQ** | 10 个常见问题手风琴，点击展开/收起，CSS max-height 过渡动画 |
+| **Services** | 开源版 vs 商业版功能对比矩阵（独立页面 `/services`） |
+| **Contact** | 4 个联系渠道卡片：GitHub Issues / 邮件 / 微信社群 / 技术文档（独立页面 `/contact`） |
+| **FAQ** | 9 个常见问题，原生 `<details>`/`<summary>` 手风琴，双列网格布局 + 编号徽章（独立页面 `/faq`） |
 | **FooterBar** | 简洁页脚，GitHub 链接 + License + 版权信息 |
 
 ---
