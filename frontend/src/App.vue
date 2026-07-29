@@ -1,63 +1,82 @@
 <template>
   <NavBar />
-  <HeroSection />
-  <PainPoints />
-  <Competitors />
-  <Features />
-  <Architecture />
-  <SqlDemo />
-  <ReportPreview />
-  <Assessment />
-  <Security />
-  <Metrics />
-  <FlowSteps />
-  <Versions />
-  <QuickStart />
-  <FAQ />
+  <router-view />
   <FooterBar />
 </template>
 
 <script setup>
 import NavBar from './components/NavBar.vue'
-import HeroSection from './components/HeroSection.vue'
-import PainPoints from './components/PainPoints.vue'
-import Competitors from './components/Competitors.vue'
-import Features from './components/Features.vue'
-import Architecture from './components/Architecture.vue'
-import SqlDemo from './components/SqlDemo.vue'
-import ReportPreview from './components/ReportPreview.vue'
-import Assessment from './components/Assessment.vue'
-import Security from './components/Security.vue'
-import Metrics from './components/Metrics.vue'
-import FlowSteps from './components/FlowSteps.vue'
-import Versions from './components/Versions.vue'
-import QuickStart from './components/QuickStart.vue'
-import FAQ from './components/FAQ.vue'
 import FooterBar from './components/FooterBar.vue'
-
 import { useTheme } from './composables/useTheme'
 import { useLang } from './composables/useLang'
-import { onMounted, watch, nextTick } from 'vue'
+import { onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 
 useTheme()
 const { lang } = useLang()
+const route = useRoute()
 
-function setupRevealObserver() {
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 50)
-        obs.unobserve(e.target)
-      }
-    })
-  }, { threshold: 0.1 })
+let revealObs = null
+let mutationObs = null
 
-  document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el))
+function observeReveal(el) {
+  if (el && !el.classList.contains('visible') && !el._revealObserved) {
+    el._revealObserved = true
+    revealObs.observe(el)
+  }
 }
 
-onMounted(setupRevealObserver)
+function setupReveal() {
+  if (!revealObs) {
+    revealObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible')
+          revealObs.unobserve(e.target)
+        }
+      })
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' })
+  }
+
+  document.querySelectorAll('.reveal:not(.visible)').forEach(observeReveal)
+
+  if (!mutationObs) {
+    mutationObs = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        for (const node of m.addedNodes) {
+          if (node.nodeType !== 1) continue
+          if (node.classList?.contains('reveal')) observeReveal(node)
+          node.querySelectorAll?.('.reveal:not(.visible)').forEach(observeReveal)
+        }
+      }
+    })
+    mutationObs.observe(document.body, { childList: true, subtree: true })
+  }
+}
+
+onMounted(() => {
+  setupReveal()
+  // Fallback: if reveal elements are still hidden after 2s, force-show them
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+      el.classList.add('visible')
+    })
+  }, 2000)
+})
+
+onUnmounted(() => {
+  revealObs?.disconnect()
+  mutationObs?.disconnect()
+})
 
 watch(lang, () => {
-  nextTick(setupRevealObserver)
+  nextTick(setupReveal)
+})
+
+watch(() => route.path, () => {
+  nextTick(() => {
+    window.scrollTo(0, 0)
+    nextTick(setupReveal)
+  })
 })
 </script>
