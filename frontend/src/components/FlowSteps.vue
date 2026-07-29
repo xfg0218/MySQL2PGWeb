@@ -1,7 +1,7 @@
 <template>
   <section class="section section-alt" id="flow">
     <div class="section-inner">
-      <div class="section-tag">{{ t.flow.tag }}</div>
+      <div class="section-tag" v-if="t.flow.tag">{{ t.flow.tag }}</div>
       <h2 class="section-title">{{ t.flow.title }}</h2>
       <p class="section-desc">{{ t.flow.desc }}</p>
       <div class="flow-card-grid">
