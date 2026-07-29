@@ -2,7 +2,6 @@
   <NavBar />
   <HeroSection />
   <PainPoints />
-  <Comparison />
   <Competitors />
   <Features />
   <Architecture />
@@ -22,7 +21,6 @@
 import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
 import PainPoints from './components/PainPoints.vue'
-import Comparison from './components/Comparison.vue'
 import Competitors from './components/Competitors.vue'
 import Features from './components/Features.vue'
 import Architecture from './components/Architecture.vue'
