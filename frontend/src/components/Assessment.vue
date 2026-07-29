@@ -21,10 +21,6 @@
           </ul>
         </div>
       </div>
-      <div class="assess-cta reveal">
-        <span class="assess-cta-label">{{ t.assessment.cta }}</span>
-        <code>{{ t.assessment.command }}</code>
-      </div>
     </div>
   </section>
 </template>
