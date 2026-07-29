@@ -370,16 +370,12 @@ const zh = {
       {
         num: 2,
         title: '运行转换',
-        code: `<span class="cmt"># 构建</span>
-git clone https://github.com/xfg0218/MySQL2PG.git
-cd MySQL2PG
-make build
+        code: `<span class="cmt"># 迁移前评估（可选）</span>
+./mysql2pg assess config.yml
 
 <span class="cmt"># 运行迁移</span>
-./mysql2pg -c config.yml
+./mysql2pg -c config.yml`
 
-<span class="cmt"># 迁移前评估（可选）</span>
-./mysql2pg assess config.yml`
       },
       {
         num: 3,
@@ -784,16 +780,11 @@ const en = {
       {
         num: 2,
         title: 'Run Conversion',
-        code: `<span class="cmt"># Build</span>
-git clone https://github.com/xfg0218/MySQL2PG.git
-cd MySQL2PG
-make build
+        code: `<span class="cmt"># Pre-migration assessment (optional)</span>
+./mysql2pg assess config.yml
 
 <span class="cmt"># Run migration</span>
-./mysql2pg -c config.yml
-
-<span class="cmt"># Pre-migration assessment (optional)</span>
-./mysql2pg assess config.yml`
+./mysql2pg -c config.yml`
       },
       {
         num: 3,
