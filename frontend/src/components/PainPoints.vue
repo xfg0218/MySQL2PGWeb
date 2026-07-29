@@ -1,7 +1,7 @@
 <template>
   <section class="section section-alt" id="pain">
     <div class="section-inner">
-      <div class="section-tag">{{ t.pain.tag }}</div>
+      <div class="section-tag" v-if="t.pain.tag">{{ t.pain.tag }}</div>
       <h2 class="section-title">{{ t.pain.title }}</h2>
       <p class="section-desc">{{ t.pain.desc }}</p>
       <div class="pain-grid">
