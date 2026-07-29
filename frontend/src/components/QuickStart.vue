@@ -1,7 +1,7 @@
 <template>
   <section class="section section-alt" id="quickstart">
     <div class="section-inner">
-      <div class="section-tag">{{ t.quickstart.tag }}</div>
+      <div class="section-tag" v-if="t.quickstart.tag">{{ t.quickstart.tag }}</div>
       <h2 class="section-title">{{ t.quickstart.title }}</h2>
       <p class="section-desc"></p>
       <div class="qs-grid">
