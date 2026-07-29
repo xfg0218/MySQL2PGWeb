@@ -1,7 +1,7 @@
 <template>
   <section class="section" id="architecture">
     <div class="section-inner">
-      <div class="section-tag">{{ t.architecture.tag }}</div>
+      <div class="section-tag" v-if="t.architecture.tag">{{ t.architecture.tag }}</div>
       <h2 class="section-title">{{ t.architecture.title }}</h2>
       <p class="section-desc">{{ t.architecture.desc }}</p>
       <div class="arch-pipeline reveal">
