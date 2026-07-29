@@ -1,7 +1,7 @@
 <template>
   <section class="section" id="versions">
     <div class="section-inner">
-      <div class="section-tag">{{ t.versions.tag }}</div>
+      <div class="section-tag" v-if="t.versions.tag">{{ t.versions.tag }}</div>
       <h2 class="section-title">{{ t.versions.title }}</h2>
       <p class="section-desc"></p>
       <div class="ver-grid">
