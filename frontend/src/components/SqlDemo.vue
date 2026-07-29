@@ -1,7 +1,7 @@
 <template>
   <section class="section section-alt" id="sqldemo">
     <div class="section-inner">
-      <div class="section-tag">{{ t.sqlDemo.tag }}</div>
+      <div class="section-tag" v-if="t.sqlDemo.tag">{{ t.sqlDemo.tag }}</div>
       <h2 class="section-title">{{ t.sqlDemo.title }}</h2>
       <p class="section-desc">{{ t.sqlDemo.desc }}</p>
       <div class="sqldemo-tabs reveal">
