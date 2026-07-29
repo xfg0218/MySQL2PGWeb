@@ -1,7 +1,7 @@
 <template>
   <section class="section" id="security">
     <div class="section-inner">
-      <div class="section-tag">{{ t.security.tag }}</div>
+      <div class="section-tag" v-if="t.security.tag">{{ t.security.tag }}</div>
       <h2 class="section-title">{{ t.security.title }}</h2>
       <p class="section-desc">{{ t.security.desc }}</p>
       <div class="sec-grid">
