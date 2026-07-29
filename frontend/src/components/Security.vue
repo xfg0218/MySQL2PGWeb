@@ -15,10 +15,6 @@
           <p class="sec-desc">{{ item.desc }}</p>
         </div>
       </div>
-      <div class="sec-summary reveal">
-        <span class="sec-summary-icon">🛡</span>
-        <span>{{ t.security.summary }}</span>
-      </div>
     </div>
   </section>
 </template>
