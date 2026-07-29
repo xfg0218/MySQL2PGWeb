@@ -6,7 +6,6 @@
     </div>
     <ul class="navbar-links">
       <li><a href="#pain">{{ t.nav.pain }}</a></li>
-      <li><a href="#compare">{{ t.nav.compare }}</a></li>
       <li><a href="#features">{{ t.nav.features }}</a></li>
       <li><a href="#architecture">{{ t.nav.architecture }}</a></li>
       <li><a href="#sqldemo">SQL</a></li>
