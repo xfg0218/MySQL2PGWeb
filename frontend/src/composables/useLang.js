@@ -13,7 +13,7 @@ function toggleLang() {
 
 const zh = {
   // Nav
-  nav: { pain: '痛点', features: '功能', architecture: '架构', faq: 'FAQ', metrics: '性能', flow: '流程', quickstart: '快速开始', quickStartBtn: '快速开始' },
+  nav: { pain: '痛点', features: '功能', architecture: '架构', faq: 'FAQ', metrics: '性能', flow: '流程', quickstart: '快速开始', quickStartBtn: '快速开始', services: '服务', contact: '联系我们', backHome: '返回首页' },
 
   // Hero
   hero: {
@@ -32,7 +32,6 @@ const zh = {
 
   // Pain Points
   pain: {
-    tag: '行业痛点',
     title: '传统工具的困境',
     desc: '常见的工具功能单一，难以覆盖异构数据库全链路迁移需求。大量适配、校验、结构兼容工作仍依赖人工介入处理，耗时耗力、项目实施周期长。',
     items: [
@@ -49,7 +48,6 @@ const zh = {
 
   // Competitors
   competitors: {
-    tag: '🏆 竞品对比',
     title: 'MySQL2PG vs 主流迁移工具',
     desc: '对比业界主流数据库迁移方案，MySQL2PG 在功能覆盖度和迁移效率上全面领先。',
     colFeature: '功能特性',
@@ -57,24 +55,26 @@ const zh = {
       { name: 'MySQL2PG', icon: '✅' },
       { name: 'pgloader', icon: '📦' },
       { name: 'AWS DMS', icon: '☁️' },
-      { name: 'Azure DMS', icon: '🔷' },
+      { name: 'EDB MTK', icon: '🔧' },
     ],
     rows: [
-      { feature: 'DDL 表结构自动转换', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: '索引自动转换', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: '视图自动转换', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: '函数/存储过程转换', m2pg: true, pgloader: false, aws: false, azure: false },
+      { feature: 'DDL 表结构自动转换', m2pg: true, pgloader: true, aws: 'partial', azure: true },
+      { feature: '索引自动转换', m2pg: true, pgloader: true, aws: 'partial', azure: true },
+      { feature: '视图自动转换', m2pg: true, pgloader: 'partial', aws: 'partial', azure: false },
+      { feature: '函数/存储过程转换', m2pg: true, pgloader: false, aws: 'partial', azure: false },
       { feature: '用户与权限迁移', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: '数据一致性校验', m2pg: true, pgloader: false, aws: true, azure: true },
+      { feature: '数据一致性校验', m2pg: true, pgloader: false, aws: true, azure: false },
       { feature: 'HTML 迁移报告', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: '迁移前风险评估', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: 'MPP 分布式支持', m2pg: true, pgloader: false, aws: false, azure: false },
-    ]
+      { feature: '迁移前风险评估', m2pg: true, pgloader: false, aws: true, azure: false },
+      { feature: 'MPP 分布式支持', m2pg: true, pgloader: 'partial', aws: true, azure: false },
+    ],
+    legendFull: '完全支持',
+    legendPartial: '部分支持（需手工补充）',
+    legendNone: '不支持',
   },
 
   // Features
   features: {
-    tag: '🚀 核心功能',
     title: 'MySQL2PG 全链路迁移能力',
     desc: '从表结构到数据、从视图到权限，覆盖迁移的每一个环节。',
     items: [
@@ -91,7 +91,6 @@ const zh = {
 
   // Architecture
   architecture: {
-    tag: '🏗 工作原理',
     title: '智能转换引擎架构',
     desc: 'MySQL2PG 采用流水线架构，每个阶段独立处理、可配置开关，确保转换过程透明可控。',
     stages: [
@@ -105,7 +104,6 @@ const zh = {
 
   // SQL Demo
   sqlDemo: {
-    tag: '💻 转换示例',
     title: 'SQL 转换前后对比',
     desc: '真实展示 MySQL 到 PostgreSQL 的智能转换效果，所见即所得。',
     examples: [
@@ -225,7 +223,6 @@ const zh = {
 
   // Report Preview
   report: {
-    tag: '📄 迁移报告',
     title: 'HTML 可视化迁移报告',
     desc: '迁移完成后自动生成 HTML 报告，一目了然掌握迁移结果和潜在问题。',
     sections: [
@@ -249,7 +246,6 @@ const zh = {
 
   // Assessment
   assessment: {
-    tag: '🔬 迁移评估',
     title: '迁移前风险评估',
     desc: '在正式迁移前运行 assess 模式，全面了解兼容性状况和潜在风险，做到心中有数。',
     categories: [
@@ -278,7 +274,6 @@ const zh = {
 
   // Security
   security: {
-    tag: '🔐 安全与数据保障',
     title: '数据安全，始终第一',
     desc: 'MySQL2PG 从架构设计到运行执行，全方位保障你的数据库安全。不收集、不上传、不存储任何数据。',
     items: [
@@ -291,8 +286,7 @@ const zh = {
 
   // Metrics
   metrics: {
-    tag: '📈 性能指标',
-    title: '用数据说话',
+    title: '性能指标，用数据说话',
     items: [
       { target: 10000, suffix: '+', label: '行/秒 同步速度', decimal: 0 },
       { target: 100, suffix: '%', label: '类型映射准确率', decimal: 1 },
@@ -303,8 +297,7 @@ const zh = {
 
   // Flow Steps
   flow: {
-    tag: '🔄 转换流程',
-    title: '8 步完成全量迁移',
+    title: '转换流程，8 步完成全量迁移',
     desc: '从连接数据库到数据校验，MySQL2PG 全自动流水线，每一步都可独立控制开关。',
     steps: [
       { num: '01', title: '读取表定义', desc: '自动扫描 MySQL 数据库中的所有表和结构，支持灵活过滤，精准选择迁移范围。', tags: ['白名单筛选', '黑名单排除', '自动发现'] },
@@ -325,7 +318,6 @@ const zh = {
 
   // Versions
   versions: {
-    tag: '🏷 版本兼容',
     title: '广泛的数据库版本支持',
     mysql: '🐬 MySQL（源库）',
     pg: '🐘 PostgreSQL（目标库）',
@@ -335,8 +327,7 @@ const zh = {
 
   // Quick Start
   quickstart: {
-    tag: '⚡ 快速开始',
-    title: '3 步启动迁移',
+    title: '3 步快速开始启动迁移',
     steps: [
       {
         num: 1,
@@ -398,8 +389,7 @@ const zh = {
 
   // FAQ
   faq: {
-    tag: '❓ 常见问题',
-    title: 'FAQ',
+    title: '常见问题 FAQ',
     desc: '关于 MySQL2PG 迁移工具的常见问题解答。',
     items: [
       { q: '支持哪些 MySQL 存储引擎？', a: 'MySQL2PG 支持所有主流存储引擎，包括 InnoDB、MyISAM、MEMORY 等。InnoDB 表会自动处理外键约束的迁移。' },
@@ -414,6 +404,121 @@ const zh = {
     ]
   },
 
+  // Services
+  services: {
+    title: '开源版与商业版',
+    desc: 'MySQL2PG 提供开源版与商业版版本，请选择适合您的版本。',
+    openSource: {
+      name: '开源版',
+      price: '免费',
+      intro: '功能完整的 MySQL → PostgreSQL 迁移工具，开箱即用，社区驱动。',
+      btn: 'GitHub',
+      link: 'https://github.com/xfg0218/MySQL2PG',
+      features: [
+        'DDL 转换（表结构/索引/视图）',
+        '全量数据迁移',
+        '数据类型自动映射',
+        '用户与权限迁移',
+        '本地运行 / 源库零修改',
+        '传输加密 / 凭证安全'
+      ]
+    },
+    commercial: {
+      name: '商业版',
+      price: '联系咨询',
+      recommend: '推荐',
+      intro: '在开源版全部功能基础上，提供企业级增值服务与专属支持。',
+      btn: '联系我们 →',
+      features: [
+        '包含开源版全部功能',
+        '函数转换',
+        '视图转换',
+        'MPP 数据库支持',
+        '数据校验',
+        '迁移前风险评估',
+        '迁移全流程保障'
+      ]
+    },
+    compareTitle: '版本功能对比',
+    compareDesc: '详细功能逐项对比，帮助你选择适合的版本。',
+    compareFeature: '功能',
+    compareGroups: [
+      {
+        title: '迁移能力',
+        rows: [
+          { label: 'DDL 转换（表结构/索引/视图）', open: true, commercial: true },
+          { label: '全量数据迁移', open: true, commercial: true },
+          { label: '数据类型自动映射', open: true, commercial: true },
+          { label: '函数转换', open: false, commercial: true },
+          { label: '视图转换', open: false, commercial: true },
+          { label: '用户与权限迁移', open: true, commercial: true },
+          { label: 'MPP 数据库支持', open: false, commercial: true }
+        ]
+      },
+      {
+        title: '安全与保障',
+        rows: [
+          { label: '本地运行 / 源库零修改', open: true, commercial: true },
+          { label: '传输加密 / 凭证安全', open: true, commercial: true },
+          { label: '数据校验', open: false, commercial: true },
+          { label: '迁移前风险评估', open: false, commercial: true }
+        ]
+      },
+      {
+        title: '支持与服务',
+        rows: [
+          { label: '技术支持', open: '社区（GitHub Issues）', commercial: '优先支持' },
+          { label: '响应时间', open: '24 小时内', commercial: '响应及时' },
+          { label: '企业合规适配', open: false, commercial: true },
+          { label: '授权方式', open: 'Apache-2.0', commercial: '商业授权' }
+        ]
+      }
+    ]
+  },
+
+  // Contact
+  contact: {
+    // tag: '📬 联系我们',
+    title: '获取帮助与支持',
+    desc: '通过以下渠道联系我们，获取技术支持和迁移方案咨询，将在1-2 个工作日内回复。',
+    channels: [
+      {
+        icon: '🐙',
+        title: 'GitHub Issues',
+        desc: '提交 Bug 报告、功能建议或技术问题到项目仓库 Issue 区。',
+        link: 'https://github.com/xfg0218/MySQL2PG/issues',
+        linkText: '提交 Issue',
+        external: true
+      },
+      {
+        icon: '✉️',
+        title: '邮件联系',
+        desc: '点击复制邮箱地址，发送邮件咨询迁移方案、商业合作或技术支持问题。',
+        copy: 'xufugui88@163.com',
+        linkText: 'xufugui88@163.com'
+      },
+      {
+        icon: '💬',
+        title: '微信社群',
+        desc: '加入微信技术交流群，与 MySQL2PG 用户和开发者探讨数据库迁移最佳实践。',
+        link: null,
+        linkText: '微信号：XuLucius',
+        external: false
+      },
+      {
+        icon: '📖',
+        title: '技术文档',
+        desc: '查看完整的项目文档和使用指南，包括配置说明、FAQ 和版本兼容性列表。',
+        link: 'https://github.com/xfg0218/MySQL2PG/wiki',
+        linkText: '查看文档',
+        external: true
+      }
+    ],
+    copied: '已复制',
+    promiseTitle: '24 小时内响应',
+    promiseDesc: '我们承诺在 24 小时内回复每一条消息，提供及时的技术支持。'
+  },
+
   // Footer
   footer: {
     text: 'MySQL2PG · Apache-2.0 License · Built with Go 1.24+',
@@ -423,7 +528,7 @@ const zh = {
 
 const en = {
   // Nav
-  nav: { pain: 'Pain Points', features: 'Features', architecture: 'Architecture', faq: 'FAQ', metrics: 'Metrics', flow: 'Workflow', quickstart: 'Quick Start', quickStartBtn: 'Quick Start' },
+  nav: { pain: 'Pain Points', features: 'Features', architecture: 'Architecture', faq: 'FAQ', metrics: 'Metrics', flow: 'Workflow', quickstart: 'Quick Start', quickStartBtn: 'Quick Start', services: 'Services', contact: 'Contact', backHome: 'Back to Home' },
 
   // Hero
   hero: {
@@ -442,7 +547,6 @@ const en = {
 
   // Pain Points
   pain: {
-    tag: '⚠ Industry Pain Points',
     title: 'The Dilemma of Traditional Tools',
     desc: 'Common tools have limited capabilities and cannot cover the full-pipeline migration needs of heterogeneous databases. A large amount of adaptation, validation, and structural compatibility work still relies on manual intervention — time-consuming, labor-intensive, and with long project cycles.',
     items: [
@@ -459,7 +563,6 @@ const en = {
 
   // Competitors
   competitors: {
-    tag: '🏆 Competitive Landscape',
     title: 'MySQL2PG vs Leading Migration Tools',
     desc: 'Side-by-side comparison with mainstream database migration solutions. MySQL2PG leads in feature coverage and migration efficiency.',
     colFeature: 'Feature',
@@ -467,24 +570,26 @@ const en = {
       { name: 'MySQL2PG', icon: '✅' },
       { name: 'pgloader', icon: '📦' },
       { name: 'AWS DMS', icon: '☁️' },
-      { name: 'Azure DMS', icon: '🔷' },
+      { name: 'EDB MTK', icon: '🔧' },
     ],
     rows: [
-      { feature: 'DDL Table Auto Conversion', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: 'Index Auto Conversion', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: 'View Auto Conversion', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: 'Function/Procedure Conversion', m2pg: true, pgloader: false, aws: false, azure: false },
+      { feature: 'DDL Table Auto Conversion', m2pg: true, pgloader: true, aws: 'partial', azure: true },
+      { feature: 'Index Auto Conversion', m2pg: true, pgloader: true, aws: 'partial', azure: true },
+      { feature: 'View Auto Conversion', m2pg: true, pgloader: 'partial', aws: 'partial', azure: false },
+      { feature: 'Function/Procedure Conversion', m2pg: true, pgloader: false, aws: 'partial', azure: false },
       { feature: 'User & Privilege Migration', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: 'Data Consistency Validation', m2pg: true, pgloader: false, aws: true, azure: true },
+      { feature: 'Data Consistency Validation', m2pg: true, pgloader: false, aws: true, azure: false },
       { feature: 'HTML Migration Report', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: 'Pre-migration Risk Assessment', m2pg: true, pgloader: false, aws: false, azure: false },
-      { feature: 'MPP Distributed DB Support', m2pg: true, pgloader: false, aws: false, azure: false },
-    ]
+      { feature: 'Pre-migration Risk Assessment', m2pg: true, pgloader: false, aws: true, azure: false },
+      { feature: 'MPP Distributed DB Support', m2pg: true, pgloader: 'partial', aws: true, azure: false },
+    ],
+    legendFull: 'Full support',
+    legendPartial: 'Partial (manual work needed)',
+    legendNone: 'Not supported',
   },
 
   // Features
   features: {
-    tag: '🚀 Core Features',
     title: 'Full-Pipeline Migration Capabilities',
     desc: 'From table structures to data, from views to privileges — MySQL2PG covers every aspect of migration.',
     items: [
@@ -501,7 +606,6 @@ const en = {
 
   // Architecture
   architecture: {
-    tag: '🏗 How It Works',
     title: 'Conversion Engine Architecture',
     desc: 'MySQL2PG uses a pipeline architecture where each stage is independently processed and configurable, ensuring transparent and controllable conversion.',
     stages: [
@@ -515,7 +619,6 @@ const en = {
 
   // SQL Demo
   sqlDemo: {
-    tag: '💻 Conversion Examples',
     title: 'Before & After SQL Conversion',
     desc: 'See real MySQL to PostgreSQL DDL conversion results. What you see is what you get.',
     examples: [
@@ -635,7 +738,6 @@ const en = {
 
   // Report Preview
   report: {
-    tag: '📄 Migration Report',
     title: 'HTML Visual Migration Report',
     desc: 'Automatically generates an HTML report after migration, giving you a clear overview of results and potential issues.',
     sections: [
@@ -659,7 +761,6 @@ const en = {
 
   // Assessment
   assessment: {
-    tag: '🔬 Pre-Migration Assessment',
     title: 'Risk Assessment Before Migration',
     desc: 'Run the assess mode before actual migration to fully understand compatibility status and potential risks.',
     categories: [
@@ -688,7 +789,6 @@ const en = {
 
   // Security
   security: {
-    tag: '🔐 Security & Data Safety',
     title: 'Data Security Always Comes First',
     desc: 'MySQL2PG safeguards your database at every level — from architecture design to runtime execution. No data collection, no uploads, no storage.',
     items: [
@@ -701,8 +801,7 @@ const en = {
 
   // Metrics
   metrics: {
-    tag: '📈 Performance Metrics',
-    title: 'Data-Driven Results',
+    title: 'Performance Metrics, Data-Driven Results',
     items: [
       { target: 10000, suffix: '+', label: 'Rows/sec Sync Speed', decimal: 0 },
       { target: 100, suffix: '%', label: 'Type Mapping Accuracy', decimal: 1 },
@@ -713,8 +812,7 @@ const en = {
 
   // Flow Steps
   flow: {
-    tag: '🔄 Workflow',
-    title: 'Full Migration in 8 Steps',
+    title: 'Conversion Workflow — Full Migration in 8 Steps',
     desc: 'From database connection to data validation — MySQL2PG is a fully automated pipeline with independent on/off control for each step.',
     steps: [
       { num: '01', title: 'Read Table Definitions', desc: 'Auto-scans all tables and structures in the MySQL database. Supports flexible filtering to precisely select migration scope.', tags: ['Whitelist Filter', 'Blacklist Exclude', 'Auto Discovery'] },
@@ -735,7 +833,6 @@ const en = {
 
   // Versions
   versions: {
-    tag: '🏷 Version Compatibility',
     title: 'Broad Database Version Support',
     mysql: '🐬 MySQL (Source)',
     pg: '🐘 PostgreSQL (Target)',
@@ -745,8 +842,7 @@ const en = {
 
   // Quick Start
   quickstart: {
-    tag: '⚡ Quick Start',
-    title: 'Start Migration in 3 Steps',
+    title: 'Get Started in 3 Steps',
     steps: [
       {
         num: 1,
@@ -807,7 +903,6 @@ const en = {
 
   // FAQ
   faq: {
-    tag: '❓ FAQ',
     title: 'Frequently Asked Questions',
     desc: 'Common questions about the MySQL2PG migration tool.',
     items: [
@@ -821,6 +916,121 @@ const en = {
       { q: 'What does the migration report include?', a: 'The HTML migration report includes: migration overview (table count, data volume, duration), per-table conversion status, index change inventory, function mapping details, data validation results, risk alerts, and recommendations.' },
       { q: 'Does it support distributed databases like Greenplum / YugabyteDB?', a: 'Yes. MySQL2PG auto-detects MPP distributed databases (Greenplum / YugabyteDB) and automatically adds DISTRIBUTED BY distribution keys while automatically handling redundant unique indexes.' },
     ]
+  },
+
+  // Services
+  services: {
+    title: 'Open Source & Commercial',
+    desc: 'MySQL2PG offers open-source and commercial editions — choose the one that fits you.',
+    openSource: {
+      name: 'Open Source',
+      price: 'Free',
+      intro: 'A fully-featured MySQL → PostgreSQL migration tool, ready to use and community-driven.',
+      btn: 'GitHub',
+      link: 'https://github.com/xfg0218/MySQL2PG',
+      features: [
+        'DDL conversion (tables/indexes/views)',
+        'Full data migration',
+        'Data type auto-mapping',
+        'User & privilege migration',
+        'Local-only / zero source changes',
+        'Transport encryption / credential security'
+      ]
+    },
+    commercial: {
+      name: 'Commercial',
+      price: 'Contact Us',
+      recommend: 'Recommended',
+      intro: 'Includes all open-source features plus enterprise value-added services and dedicated support.',
+      btn: 'Contact Us →',
+      features: [
+        'Includes all open-source features',
+        'Function conversion',
+        'View conversion',
+        'MPP database support',
+        'Data validation',
+        'Pre-migration risk assessment',
+        'Full migration workflow assurance'
+      ]
+    },
+    compareTitle: 'Edition Comparison',
+    compareDesc: 'Detailed feature-by-feature comparison to help you choose the right edition.',
+    compareFeature: 'Feature',
+    compareGroups: [
+      {
+        title: 'Migration Capabilities',
+        rows: [
+          { label: 'DDL conversion (tables/indexes/views)', open: true, commercial: true },
+          { label: 'Full data migration', open: true, commercial: true },
+          { label: 'Data type auto-mapping', open: true, commercial: true },
+          { label: 'Function conversion', open: false, commercial: true },
+          { label: 'View conversion', open: false, commercial: true },
+          { label: 'User & privilege migration', open: true, commercial: true },
+          { label: 'MPP database support', open: false, commercial: true }
+        ]
+      },
+      {
+        title: 'Security & Assurance',
+        rows: [
+          { label: 'Local-only / zero source changes', open: true, commercial: true },
+          { label: 'Transport encryption / credential security', open: true, commercial: true },
+          { label: 'Data validation', open: false, commercial: true },
+          { label: 'Pre-migration risk assessment', open: false, commercial: true }
+        ]
+      },
+      {
+        title: 'Support & Services',
+        rows: [
+          { label: 'Technical support', open: 'Community (GitHub Issues)', commercial: 'Priority support' },
+          { label: 'Response time', open: 'Within 24 hours', commercial: 'Timely response' },
+          { label: 'Enterprise compliance adaptation', open: false, commercial: true },
+          { label: 'License', open: 'Apache-2.0', commercial: 'Commercial license' }
+        ]
+      }
+    ]
+  },
+
+  // Contact
+  contact: {
+    // tag: '📬 Contact Us',
+    title: 'Get Help & Support',
+    desc: 'Reach out through the following channels for technical support and migration consultation. We typically respond within 1-2 business days.',
+    channels: [
+      {
+        icon: '🐙',
+        title: 'GitHub Issues',
+        desc: 'Submit bug reports, feature requests, or technical questions to the project repository.',
+        link: 'https://github.com/xfg0218/MySQL2PG/issues',
+        linkText: 'Open an Issue',
+        external: true
+      },
+      {
+        icon: '✉️',
+        title: 'Email',
+        desc: 'Click to copy our email address. Contact us for migration planning, business collaboration, or technical support.',
+        copy: 'xufugui88@163.com',
+        linkText: 'xufugui88@163.com'
+      },
+      {
+        icon: '💬',
+        title: 'WeChat Community',
+        desc: 'Join the WeChat technical community to discuss database migration best practices with MySQL2PG users and developers.',
+        link: null,
+        linkText: 'WeChat ID: XuLucius',
+        external: false
+      },
+      {
+        icon: '📖',
+        title: 'Documentation',
+        desc: 'Browse the complete project documentation and usage guide, including configuration, FAQ, and version compatibility.',
+        link: 'https://github.com/xfg0218/MySQL2PG/wiki',
+        linkText: 'View Docs',
+        external: true
+      }
+    ],
+    copied: 'Copied',
+    promiseTitle: '24-Hour Response',
+    promiseDesc: 'We promise to respond to every message within 24 hours with timely technical support.'
   },
 
   // Footer
