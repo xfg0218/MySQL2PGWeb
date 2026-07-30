@@ -81,6 +81,12 @@ echo "  ║   MySQL2PG Web · 一键启动脚本        ║"
 echo "  ╚══════════════════════════════════════╝"
 echo ""
 
+# ── 加载 nvm（非交互式 shell 不会自动加载） ──
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+    . "$NVM_DIR/nvm.sh"
+fi
+
 # ── 检查环境 ──
 info "检查运行环境..."
 
