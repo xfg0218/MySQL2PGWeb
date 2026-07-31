@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"sync"
 	"time"
@@ -21,7 +22,7 @@ type geoCacheEntry struct {
 var (
 	geoCache   = make(map[string]geoCacheEntry)
 	geoCacheMu sync.RWMutex
-	geoClient  = &http.Client{Timeout: 3 * time.Second}
+	geoClient  = &http.Client{Timeout: 5 * time.Second}
 )
 
 const geoCacheTTL = 24 * time.Hour
@@ -38,7 +39,7 @@ func lookupGeo(ip string) geoInfo {
 		return entry.info
 	}
 
-	info := fetchGeoFromAPI(ip)
+	info := fetchGeoWithRetry(ip)
 
 	geoCacheMu.Lock()
 	geoCache[ip] = geoCacheEntry{info: info, expiresAt: time.Now().Add(geoCacheTTL)}
@@ -47,24 +48,60 @@ func lookupGeo(ip string) geoInfo {
 	return info
 }
 
-func fetchGeoFromAPI(ip string) geoInfo {
+func fetchGeoWithRetry(ip string) geoInfo {
+	for i := 0; i < 2; i++ {
+		if info := fetchFromIPAPI(ip); info.Country != "" {
+			return info
+		}
+		time.Sleep(200 * time.Millisecond)
+	}
+	if info := fetchFromIPInfo(ip); info.Country != "" {
+		return info
+	}
+	return geoInfo{}
+}
+
+func fetchFromIPAPI(ip string) geoInfo {
 	url := fmt.Sprintf("http://ip-api.com/json/%s?fields=status,country,city", ip)
-	resp, err := geoClient.Get(url)
+	body, err := httpGet(url)
 	if err != nil {
 		return geoInfo{}
 	}
-	defer resp.Body.Close()
-
 	var result struct {
 		Status  string `json:"status"`
 		Country string `json:"country"`
 		City    string `json:"city"`
 	}
-	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+	if err := json.Unmarshal(body, &result); err != nil {
 		return geoInfo{}
 	}
 	if result.Status != "success" {
 		return geoInfo{}
 	}
 	return geoInfo{Country: result.Country, City: result.City}
+}
+
+func fetchFromIPInfo(ip string) geoInfo {
+	url := fmt.Sprintf("https://ipinfo.io/%s/json", ip)
+	body, err := httpGet(url)
+	if err != nil {
+		return geoInfo{}
+	}
+	var result struct {
+		Country string `json:"country"`
+		City    string `json:"city"`
+	}
+	if err := json.Unmarshal(body, &result); err != nil {
+		return geoInfo{}
+	}
+	return geoInfo{Country: result.Country, City: result.City}
+}
+
+func httpGet(url string) ([]byte, error) {
+	resp, err := geoClient.Get(url)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	return io.ReadAll(resp.Body)
 }
