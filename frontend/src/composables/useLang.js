@@ -13,8 +13,35 @@ function toggleLang() {
   setLang(lang.value === 'zh' ? 'en' : 'zh')
 }
 
+const ogMeta = {
+  zh: {
+    title: 'MySQL2PG - 高性能 MySQL 到 PostgreSQL 迁移工具',
+    desc: '一站式异构数据库迁移：DDL、索引、视图、函数、用户、权限、数据校验，100% 自动转换。',
+  },
+  en: {
+    title: 'MySQL2PG - High-Performance MySQL to PostgreSQL Migration Tool',
+    desc: 'One-stop heterogeneous database migration: DDL, indexes, views, functions, users, privileges, data validation — 100% automatic conversion.',
+  },
+}
+
+function updateMetaTags(l) {
+  const og = ogMeta[l]
+  if (!og) return
+  const set = (attr, val, content) => {
+    let el = document.querySelector(`meta[${attr}="${val}"]`)
+    if (el) el.content = content
+  }
+  set('property', 'og:title', og.title)
+  set('property', 'og:description', og.desc)
+  set('property', 'og:locale', l === 'zh' ? 'zh_CN' : 'en_US')
+  set('name', 'twitter:title', og.title)
+  set('name', 'twitter:description', og.desc)
+  document.title = og.title
+}
+
 watch(lang, (l) => {
   document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en'
+  updateMetaTags(l)
   const meta = window.__router_current_meta
   if (meta) {
     document.title = l === 'en' ? meta.titleEn : meta.titleZh
