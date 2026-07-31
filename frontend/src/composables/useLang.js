@@ -35,7 +35,7 @@ const zh = {
     title: '传统工具的困境',
     desc: '常见的工具功能单一，难以覆盖异构数据库全链路迁移需求。大量适配、校验、结构兼容工作仍依赖人工介入处理，耗时耗力、项目实施周期长。',
     items: [
-      { icon: '📋', title: 'DDL 无法全部自动转换', desc: '结构需手动逐结构需手动逐字段再次改写，改写工作量巨大。' },
+      { icon: '📋', title: 'DDL 无法全部自动转换', desc: '结构需手动逐字段再次改写，改写工作量巨大。' },
       { icon: '🔑', title: 'Index 无法自动转换', desc: '主键、唯一索引、普通索引、全文索引无法转换，需要手动在 PG 侧重建，耗时耗力。' },
       { icon: '👁', title: 'View 无法转换', desc: '视图定义涉及语法差异和函数替换，手动改写复杂度高。' },
       { icon: '⚙️', title: 'Function 无法转换', desc: '跨库存储过程与内置函数语法存在天然鸿沟，依靠人工改写难度高、极易出现逻辑缺陷。' },
@@ -225,51 +225,61 @@ const zh = {
   report: {
     title: 'HTML 可视化迁移报告',
     desc: '迁移完成后自动生成 HTML 报告，一目了然掌握迁移结果和潜在问题。',
-    sections: [
-      { icon: '📊', title: '迁移总览', desc: '表数量、数据量、耗时、成功率等关键指标汇总' },
-      { icon: '⚠️', title: '风险告警', desc: '不兼容语法、潜在数据丢失风险、需人工确认的项目' },
-      { icon: '📋', title: '详细清单', desc: '每张表的转换状态、索引变更、函数映射的逐条记录' },
-      { icon: '✅', title: '校验结果', desc: '数据一致性校验结果，不一致表的行数和差异详情' },
-    ],
-    mockStats: [
-      { label: '转换表数', value: '128' },
-      { label: '成功率', value: '99.2%' },
-      { label: '风险项', value: '3' },
-      { label: '迁移耗时', value: '2h 15m' },
-    ],
-    mockRisks: [
-      { level: 'warn', text: '表 orders 含 GEOMETRY 列，已转换为 PostGIS 类型，需确认 PostGIS 扩展已安装' },
-      { level: 'warn', text: '函数 fn_calc_total 含自定义逻辑，已转换核心语法，建议人工复核' },
-      { level: 'info', text: '表 logs 数据量 500 万行，建议启用并发同步以提升性能' },
-    ]
+    mockReport: {
+      title: 'MySQL2PG 迁移报告',
+      date: '2026-07-30 10:00:00',
+      source: 'converter.log',
+      stats: [
+        { label: 'TABLES', value: '196', color: 'green' },
+        { label: 'ROWS', value: '1,557', color: 'cyan' },
+        { label: 'VIEWS', value: '0', color: 'blue' },
+        { label: 'INDEXES', value: '453', color: 'purple' },
+        { label: 'FUNCTIONS', value: '0', color: 'orange' },
+        { label: 'ERRORS', value: '10', color: 'red' },
+      ],
+      performanceTitle: 'Performance',
+      stagesBadge: 'STAGES',
+      stages: [
+        { label: '转换表结构', count: 196, time: '67.80s', percent: 100 },
+        { label: '转换表视图', count: 35, time: '1.81s', percent: 3 },
+        { label: '转换表索引', count: 453, time: '14.54s', percent: 21 },
+        { label: '转换函数', count: 113, time: '4.44s', percent: 7 },
+        { label: '转换库用户', count: 3, time: '0.06s', percent: 1 },
+        { label: '转换表权限', count: 9, time: '1.04s', percent: 2 },
+      ],
+    }
   },
 
   // Assessment
   assessment: {
     title: '迁移前风险评估',
     desc: '在正式迁移前运行 assess 模式，全面了解兼容性状况和潜在风险，做到心中有数。',
-    categories: [
-      {
-        icon: '📐', title: '表结构兼容性', color: 'green',
-        score: '100 %',
-        items: ['MySQL 全部类型自动映射', '特殊类型（JSON/GEOMETRY）自动转换', '特殊语法给出建议']
-      },
-      {
-        icon: '⚙️', title: '函数复杂度', color: 'amber',
-        score: '90%+',
-        items: ['常用函数自动转换', '自定义函数标注', '版本差异提示']
-      },
-      {
-        icon: '📦', title: '数据量评估', color: 'green',
-        score: '智能策略',
-        items: ['大表自动识别', '并发策略推荐', '预计耗时估算']
-      },
-      {
-        icon: '🔒', title: '权限迁移风险', color: 'amber',
-        score: '100%',
-        items: ['用户映射检查', '权限差异分析', 'Role 冲突检测']
-      },
-    ]
+    mockReport: {
+      title: 'MySQL2PG 迁移前评估报告',
+      date: '2026-07-30 09:00:00',
+      sourceLabel: '源',
+      source: 'MySQL @ 127.0.0.1:3306',
+      targetLabel: '目标',
+      target: 'PostgreSQL @ 127.0.0.1:5432',
+      mysqlVersionLabel: 'MySQL 版本',
+      mysqlVersion: '8.0.46-0ubuntu0.24.04.3',
+      pgVersionLabel: 'PostgreSQL 版本',
+      pgVersion: 'PostgreSQL 17.6 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, 64-bit',
+      metrics: [
+        { label: '总体评分', value: '100/100', highlight: 'green' },
+        { label: '风险等级', value: '低', highlight: 'green' },
+        { label: '表数量', value: '196' },
+        { label: '表 DDL 行数', value: '2247' },
+        { label: '视图数量', value: '35' },
+        { label: '视图 DDL 行数', value: '105' },
+        { label: '函数数量', value: '113' },
+        { label: '函数 DDL 行数', value: '9243' },
+        { label: '索引数量', value: '603' },
+        { label: '索引 DDL 行数', value: '603' },
+        { label: '用户数量', value: '3' },
+        { label: '权限数量', value: '9' },
+      ]
+    }
   },
 
   // Security
@@ -740,51 +750,61 @@ const en = {
   report: {
     title: 'HTML Visual Migration Report',
     desc: 'Automatically generates an HTML report after migration, giving you a clear overview of results and potential issues.',
-    sections: [
-      { icon: '📊', title: 'Migration Overview', desc: 'Summary of table counts, data volume, duration, and success rates' },
-      { icon: '⚠️', title: 'Risk Alerts', desc: 'Incompatible syntax, potential data loss risks, items requiring manual review' },
-      { icon: '📋', title: 'Detailed Inventory', desc: 'Per-table conversion status, index changes, and function mapping records' },
-      { icon: '✅', title: 'Validation Results', desc: 'Data consistency validation results with row counts and discrepancy details' },
-    ],
-    mockStats: [
-      { label: 'Tables Converted', value: '128' },
-      { label: 'Success Rate', value: '99.2%' },
-      { label: 'Risk Items', value: '3' },
-      { label: 'Migration Duration', value: '2h 15m' },
-    ],
-    mockRisks: [
-      { level: 'warn', text: 'Table orders contains GEOMETRY columns, converted to PostGIS types. Verify PostGIS extension is installed.' },
-      { level: 'warn', text: 'Function fn_calc_total contains custom logic. Core syntax converted, manual review recommended.' },
-      { level: 'info', text: 'Table logs has 5 million rows. Consider enabling concurrent sync for better performance.' },
-    ]
+    mockReport: {
+      title: 'MySQL2PG Migration Report',
+      date: '2026-07-30 10:00:00',
+      source: 'converter.log',
+      stats: [
+        { label: 'TABLES', value: '196', color: 'green' },
+        { label: 'ROWS', value: '1,557', color: 'cyan' },
+        { label: 'VIEWS', value: '0', color: 'blue' },
+        { label: 'INDEXES', value: '453', color: 'purple' },
+        { label: 'FUNCTIONS', value: '0', color: 'orange' },
+        { label: 'ERRORS', value: '10', color: 'red' },
+      ],
+      performanceTitle: 'Performance',
+      stagesBadge: 'STAGES',
+      stages: [
+        { label: 'Convert Tables', count: 196, time: '67.80s', percent: 100 },
+        { label: 'Convert Views', count: 35, time: '1.81s', percent: 3 },
+        { label: 'Convert Indexes', count: 453, time: '14.54s', percent: 21 },
+        { label: 'Convert Functions', count: 113, time: '4.44s', percent: 7 },
+        { label: 'Convert Users', count: 3, time: '0.06s', percent: 1 },
+        { label: 'Convert Privileges', count: 9, time: '1.04s', percent: 2 },
+      ],
+    }
   },
 
   // Assessment
   assessment: {
     title: 'Risk Assessment Before Migration',
     desc: 'Run the assess mode before actual migration to fully understand compatibility status and potential risks.',
-    categories: [
-      {
-        icon: '📐', title: 'Schema Compatibility', color: 'green',
-        score: '100%',
-        items: ['All MySQL types auto-mapped', 'Special types (JSON/GEOMETRY) auto-converted', 'Suggestions for special syntax']
-      },
-      {
-        icon: '⚙️', title: 'Function Complexity', color: 'amber',
-        score: '90%+',
-        items: ['Common functions auto-converted', 'Custom function annotations', 'Version difference warnings']
-      },
-      {
-        icon: '📦', title: 'Data Volume Assessment', color: 'green',
-        score: 'Smart Strategy',
-        items: ['Auto large table detection', 'Concurrency strategy recommendations', 'Estimated duration calculation']
-      },
-      {
-        icon: '🔒', title: 'Privilege Migration Risk', color: 'amber',
-        score: '100%',
-        items: ['User mapping verification', 'Privilege gap analysis', 'Role conflict detection']
-      },
-    ]
+    mockReport: {
+      title: 'MySQL2PG Pre-Migration Assessment Report',
+      date: '2026-07-30 09:00:00',
+      sourceLabel: 'Source',
+      source: 'MySQL @ 127.0.0.1:3306',
+      targetLabel: 'Target',
+      target: 'PostgreSQL @ 127.0.0.1:5432',
+      mysqlVersionLabel: 'MySQL Version',
+      mysqlVersion: '8.0.46-0ubuntu0.24.04.3',
+      pgVersionLabel: 'PostgreSQL Version',
+      pgVersion: 'PostgreSQL 17.6 on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, 64-bit',
+      metrics: [
+        { label: 'Overall Score', value: '100/100', highlight: 'green' },
+        { label: 'Risk Level', value: 'Low', highlight: 'green' },
+        { label: 'Tables', value: '196' },
+        { label: 'Table DDL Lines', value: '2247' },
+        { label: 'Views', value: '35' },
+        { label: 'View DDL Lines', value: '105' },
+        { label: 'Functions', value: '113' },
+        { label: 'Function DDL Lines', value: '9243' },
+        { label: 'Indexes', value: '603' },
+        { label: 'Index DDL Lines', value: '603' },
+        { label: 'Users', value: '3' },
+        { label: 'Privileges', value: '9' },
+      ]
+    }
   },
 
   // Security
