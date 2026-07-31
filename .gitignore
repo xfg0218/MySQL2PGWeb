@@ -1,0 +1,16 @@
+# Build output
+mysql2pg-web
+mysql2pg-web.log
+mysql2pg-web.pid
+access.log
+
+# IDE / editor
+.qwen/
+.vite/
+.workbuddy/
+
+# OS
+.DS_Store
+
+# Diagrams (local only)
+diagram/
