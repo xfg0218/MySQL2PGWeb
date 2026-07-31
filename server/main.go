@@ -26,14 +26,20 @@ func main() {
 		log.Fatalf("Frontend dist directory not found at %s. Run 'npm run build' in the frontend directory first.", distDir)
 	}
 
-	fs := http.FileServer(http.Dir(distDir))
-	http.Handle("/", cacheHandler(spaHandler(fs, distDir)))
+	initAccessLogger()
+
+	mux := http.NewServeMux()
+	mux.Handle("/api/track", http.HandlerFunc(trackHandler))
+	mux.Handle("/", cacheHandler(spaHandler(http.FileServer(http.Dir(distDir)), distDir)))
+
+	handler := loggingMiddleware(mux)
 
 	addr := fmt.Sprintf(":%s", port)
 	fmt.Printf("MySQL2PG Web Server starting on http://localhost%s\n", addr)
 	fmt.Printf("Serving static files from: %s\n", distDir)
+	fmt.Printf("Access log: access.log (JSON structured)\n")
 
-	if err := http.ListenAndServe(addr, nil); err != nil {
+	if err := http.ListenAndServe(addr, handler); err != nil {
 		log.Fatalf("Server failed: %v", err)
 	}
 }

@@ -12,10 +12,12 @@ import NavBar from './components/NavBar.vue'
 import FooterBar from './components/FooterBar.vue'
 import { useTheme } from './composables/useTheme'
 import { useLang } from './composables/useLang'
+import { useTracker } from './composables/useTracker'
 import { onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 
 useTheme()
+useTracker()
 const { lang } = useLang()
 const route = useRoute()
 
