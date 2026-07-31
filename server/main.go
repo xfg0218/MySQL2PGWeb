@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func main() {
@@ -26,7 +27,7 @@ func main() {
 	}
 
 	fs := http.FileServer(http.Dir(distDir))
-	http.Handle("/", spaHandler(fs, distDir))
+	http.Handle("/", cacheHandler(spaHandler(fs, distDir)))
 
 	addr := fmt.Sprintf(":%s", port)
 	fmt.Printf("MySQL2PG Web Server starting on http://localhost%s\n", addr)
@@ -35,6 +36,23 @@ func main() {
 	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatalf("Server failed: %v", err)
 	}
+}
+
+func cacheHandler(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		path := r.URL.Path
+		switch {
+		case path == "/" || path == "/index.html":
+			w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+			w.Header().Set("Pragma", "no-cache")
+			w.Header().Set("Expires", "0")
+		case strings.HasPrefix(path, "/assets/"):
+			w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
+		default:
+			w.Header().Set("Cache-Control", "public, max-age=3600")
+		}
+		next.ServeHTTP(w, r)
+	})
 }
 
 func spaHandler(next http.Handler, distDir string) http.Handler {
