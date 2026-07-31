@@ -516,7 +516,6 @@ const zh = {
 
   // Contact
   contact: {
-    tag: '📬 联系我们',
     title: '获取帮助与支持',
     desc: '通过以下渠道联系我们，获取技术支持和迁移方案咨询，将在1-2 个工作日内回复。',
     channels: [
