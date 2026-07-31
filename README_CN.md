@@ -31,6 +31,10 @@ MySQL2PG Web 是 [MySQL2PG](https://github.com/xfg0218/MySQL2PG) 高性能数据
 | 🎞 滚动动画 | IntersectionObserver + MutationObserver 驱动渐入动画，2 秒兜底机制确保可靠显示 |
 | 📊 数字计数 | 性能指标区域滚动触发数字递增动画 |
 | 📱 响应式布局 | 桌面/平板/手机自适应网格布局 |
+| 🍔 移动端导航 | 汉堡菜单 + 下拉面板，路由切换自动关闭，点击遮罩关闭 |
+| 🔗 社交分享 | Open Graph + Twitter Card 元标签，1200×630 品牌分享图 |
+| 🔍 FAQ 搜索与筛选 | 实时关键词搜索 + 5 分类标签筛选，覆盖 15 个问题 |
+| 💨 缓存策略 | index.html 禁止缓存，hashed 资源永久缓存 — 发版后零缓存问题 |
 
 ### 网站内容板块
 
@@ -51,7 +55,7 @@ MySQL2PG Web 是 [MySQL2PG](https://github.com/xfg0218/MySQL2PG) 高性能数据
 | 快速开始 | `/` | 3 步配置 + 语法高亮命令示例 |
 | 开源版与商业版 | `/services` | 独立页面 — 开源版 vs 商业版功能对比矩阵 |
 | 联系我们 | `/contact` | 独立页面 — GitHub Issues / 邮件 / 微信社群 / 技术文档 |
-| 常见问题 FAQ | `/faq` | 独立页面 — 9 个常见问题，原生 `<details>`/`<summary>` 手风琴，双列网格布局 |
+| 常见问题 FAQ | `/faq` | 独立页面 — 15 个问题，5 大分类（基础/类型转换/性能/安全运维/高级功能），支持实时搜索和分类标签筛选 |
 
 ---
 
@@ -111,11 +115,14 @@ MySQL2PGWeb/
 │   │   ├── App.vue                # 根应用（router-view + 滚动动画 + MutationObserver）
 │   │   └── main.js                # 入口文件
 │   ├── dist/                      # 构建产物（npm run build 生成）
-│   ├── index.html                 # HTML 模板
+│   ├── public/
+│   │   ├── favicon.svg            # 浏览器标签页图标（同 logo.svg）
+│   │   └── og-image.svg           # 1200×630 社交分享图（OG / Twitter Card）
+│   ├── index.html                 # HTML 模板（含 OG + Twitter Card 元标签）
 │   ├── package.json
 │   └── vite.config.js             # Vite 配置
 ├── server/                        # Golang 后端
-│   ├── main.go                    # HTTP 服务器 + SPA fallback
+│   ├── main.go                    # HTTP 服务器 + SPA fallback + 缓存控制头
 │   └── go.mod
 ├── start.sh                       # 启动脚本（start/stop/restart/status + 后台守护模式）
 ├── Makefile                       # 构建命令
@@ -268,13 +275,20 @@ make clean    # 删除 dist/、node_modules/、二进制文件
 - MutationObserver 监听动态添加的 DOM 节点（如路由切换时）
 - 2 秒兜底机制确保所有 `.reveal` 元素即使 Observer 失败也能正常显示
 
+### 缓存策略（Go 服务器）
+
+- `index.html` → `Cache-Control: no-cache, no-store, must-revalidate` — 每次访问获取最新 HTML
+- `/assets/*`（带 hash 的 JS/CSS）→ `Cache-Control: public, max-age=31536000, immutable` — 永久缓存，Vite 内容哈希保证文件名唯一
+- 其他静态文件（favicon、og-image）→ `Cache-Control: public, max-age=3600` — 缓存 1 小时
+- 重新部署后用户刷新即可看到新界面，无需手动清缓存
+
 ---
 
 ## 📝 组件说明
 
 | 组件 | 说明 |
 |------|------|
-| **NavBar** | 固定顶部导航，毛玻璃背景。SVG logo、路由链接、EN/中切换、☀️/🌙切换、GitHub 链接、Quick Start CTA |
+| **NavBar** | 固定顶部导航，毛玻璃背景。SVG logo、路由链接、EN/中切换、☀️/🌙切换、GitHub 链接、Quick Start CTA。移动端：汉堡菜单（☰→✕ 动画）+ Teleport 遮罩面板，路由切换自动关闭 |
 | **HeroSection** | 全屏 Hero，渐变文字标题 + 4 项核心数据统计 |
 | **PainPoints** | 8 张痛点卡片，展示传统 DTS 工具的 8 大功能短板 |
 | **Competitors** | 4 列竞品对比表：MySQL2PG vs pgloader vs AWS DMS vs EDB MTK，9 个功能维度，三态标识（✓ 完全支持 / ~ 部分支持 / — 不支持） |
@@ -290,7 +304,7 @@ make clean    # 删除 dist/、node_modules/、二进制文件
 | **QuickStart** | 3 步快速开始卡片，语法高亮 YAML 配置和 Shell 命令 |
 | **Services** | 开源版 vs 商业版功能对比矩阵（独立页面 `/services`） |
 | **Contact** | 4 个联系渠道卡片：GitHub Issues / 邮件 / 微信社群 / 技术文档（独立页面 `/contact`） |
-| **FAQ** | 9 个常见问题，原生 `<details>`/`<summary>` 手风琴，双列网格布局 + 编号徽章（独立页面 `/faq`） |
+| **FAQ** | 15 个问题，5 大分类，实时搜索栏 + 药丸形分类筛选标签（含计数）+ emoji 分类徽章 + 无结果空状态。双列网格，原生 `<details>`/`<summary>` 手风琴（独立页面 `/faq`） |
 | **FooterBar** | 简洁页脚，GitHub 链接 + License + 版权信息 |
 
 ---
