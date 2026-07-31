@@ -1,6 +1,9 @@
 <template>
+  <a href="#main-content" class="skip-link">Skip to content</a>
   <NavBar />
-  <router-view />
+  <main id="main-content">
+    <router-view />
+  </main>
   <FooterBar />
 </template>
 

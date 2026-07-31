@@ -1,7 +1,7 @@
 <template>
   <footer class="site-footer">
     <p>
-      <a href="https://github.com/xfg0218/MySQL2PG" target="_blank">GitHub</a> ·
+      <a href="https://github.com/xfg0218/MySQL2PG" target="_blank" rel="noopener noreferrer">GitHub</a> ·
       {{ t.footer.text }}
     </p>
     <p class="footer-meta">{{ t.footer.copyright }}</p>

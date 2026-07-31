@@ -3,26 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#09090b" />
     <title>MySQL2PG - 高性能 MySQL 到 PostgreSQL 迁移工具</title>
     <meta name="description" content="MySQL2PG 是一款用 Go 开发的专业级数据库转换工具，支持 DDL、索引、视图、函数、用户、权限、数据校验一站式迁移。" />
+    <link rel="canonical" href="https://mysql2pg.com/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="MySQL2PG - 高性能 MySQL 到 PostgreSQL 迁移工具" />
     <meta property="og:description" content="一站式异构数据库迁移：DDL、索引、视图、函数、用户、权限、数据校验，100% 自动转换。" />
-    <meta property="og:image" content="/og-image.svg" />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://mysql2pg.com" />
     <meta property="og:site_name" content="MySQL2PG" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale:alternate" content="en_US" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="MySQL2PG - 高性能 MySQL 到 PostgreSQL 迁移工具" />
     <meta name="twitter:description" content="一站式异构数据库迁移：DDL、索引、视图、函数、用户、权限、数据校验，100% 自动转换。" />
-    <meta name="twitter:image" content="/og-image.svg" />
+    <meta name="twitter:image" content="/og-image.png" />
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "MySQL2PG",
+      "description": "High-performance MySQL to PostgreSQL migration tool supporting DDL, indexes, views, functions, users, privileges, and data validation.",
+      "url": "https://mysql2pg.com",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Cross-platform",
+      "license": "https://www.apache.org/licenses/LICENSE-2.0",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "programmingLanguage": "Go",
+      "codeRepository": "https://github.com/xfg0218/MySQL2PG"
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <noscript>
+      <div style="max-width:600px;margin:80px auto;padding:2rem;text-align:center;font-family:system-ui,sans-serif;background:#18181b;color:#e4e4e7;border-radius:12px">
+        <h1>MySQL2PG</h1>
+        <p>此网站需要 JavaScript 才能正常运行。请启用 JavaScript 后刷新页面。</p>
+        <p>This website requires JavaScript. Please enable JavaScript and reload.</p>
+        <p><a href="https://github.com/xfg0218/MySQL2PG" style="color:#f59e0b">GitHub Repository</a></p>
+      </div>
+    </noscript>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>

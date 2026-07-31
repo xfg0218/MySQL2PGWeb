@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mysql2pg.com/sitemap.xml

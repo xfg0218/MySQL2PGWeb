@@ -1,6 +1,8 @@
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 const lang = ref(localStorage.getItem('mysql2pg-lang') || 'zh')
+
+document.documentElement.lang = lang.value === 'zh' ? 'zh-CN' : 'en'
 
 function setLang(l) {
   lang.value = l
@@ -10,6 +12,14 @@ function setLang(l) {
 function toggleLang() {
   setLang(lang.value === 'zh' ? 'en' : 'zh')
 }
+
+watch(lang, (l) => {
+  document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en'
+  const meta = window.__router_current_meta
+  if (meta) {
+    document.title = l === 'en' ? meta.titleEn : meta.titleZh
+  }
+})
 
 const zh = {
   // Nav
@@ -435,6 +445,7 @@ const zh = {
     title: '开源版与商业版',
     desc: 'MySQL2PG 提供开源版与商业版版本，请选择适合您的版本。',
     openSource: {
+      badge: '社区版',
       name: '开源版',
       price: '免费',
       intro: '功能完整的 MySQL → PostgreSQL 迁移工具，开箱即用，社区驱动。',
@@ -450,6 +461,7 @@ const zh = {
       ]
     },
     commercial: {
+      badge: '企业版',
       name: '商业版',
       price: '联系咨询',
       recommend: '推荐',
@@ -504,7 +516,7 @@ const zh = {
 
   // Contact
   contact: {
-    // tag: '📬 联系我们',
+    tag: '📬 联系我们',
     title: '获取帮助与支持',
     desc: '通过以下渠道联系我们，获取技术支持和迁移方案咨询，将在1-2 个工作日内回复。',
     channels: [
@@ -549,6 +561,14 @@ const zh = {
   footer: {
     text: 'MySQL2PG · Apache-2.0 License · Built with Go 1.24+',
     copyright: '© 2026 MySQL2PG Contributors',
+  },
+
+  // 404
+  notFound: {
+    title: '页面未找到',
+    desc: '您访问的页面不存在或已被移动。请返回首页或查看常见问题。',
+    backHome: '返回首页',
+    goFaq: '查看 FAQ',
   }
 }
 
@@ -975,6 +995,7 @@ const en = {
     title: 'Open Source & Commercial',
     desc: 'MySQL2PG offers open-source and commercial editions — choose the one that fits you.',
     openSource: {
+      badge: 'Community',
       name: 'Open Source',
       price: 'Free',
       intro: 'A fully-featured MySQL → PostgreSQL migration tool, ready to use and community-driven.',
@@ -990,6 +1011,7 @@ const en = {
       ]
     },
     commercial: {
+      badge: 'Enterprise',
       name: 'Commercial',
       price: 'Contact Us',
       recommend: 'Recommended',
@@ -1044,7 +1066,7 @@ const en = {
 
   // Contact
   contact: {
-    // tag: '📬 Contact Us',
+    tag: '📬 Contact Us',
     title: 'Get Help & Support',
     desc: 'Reach out through the following channels for technical support and migration consultation. We typically respond within 1-2 business days.',
     channels: [
@@ -1089,6 +1111,14 @@ const en = {
   footer: {
     text: 'MySQL2PG · Apache-2.0 License · Built with Go 1.24+',
     copyright: '© 2026 MySQL2PG Contributors',
+  },
+
+  // 404
+  notFound: {
+    title: 'Page Not Found',
+    desc: 'The page you are looking for does not exist or has been moved. Please return to the home page or check the FAQ.',
+    backHome: 'Back to Home',
+    goFaq: 'View FAQ',
   }
 }
 

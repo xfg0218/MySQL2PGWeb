@@ -2,7 +2,7 @@
   <div class="page-view">
     <section class="page-hero">
       <div class="section-inner">
-        <div class="section-tag">{{ t.contact.tag }}</div>
+        <div class="section-tag" v-if="t.contact.tag">{{ t.contact.tag }}</div>
         <h1 class="page-hero-title">{{ t.contact.title }}</h1>
         <p class="page-hero-desc">{{ t.contact.desc }}</p>
         <div class="page-hero-actions">

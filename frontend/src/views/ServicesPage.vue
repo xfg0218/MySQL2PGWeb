@@ -2,7 +2,7 @@
   <div class="page-view">
     <section class="page-hero">
       <div class="section-inner">
-        <div class="section-tag">{{ t.services.tag }}</div>
+        <div class="section-tag" v-if="t.services.tag">{{ t.services.tag }}</div>
         <h1 class="page-hero-title">{{ t.services.title }}</h1>
         <p class="page-hero-desc">{{ t.services.desc }}</p>
         <div class="page-hero-actions">
