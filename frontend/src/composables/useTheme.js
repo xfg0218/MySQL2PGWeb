@@ -3,8 +3,8 @@ import { ref } from 'vue'
 function getInitialTheme() {
   const stored = localStorage.getItem('mysql2pg-theme')
   if (stored) return stored
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark'
-  return 'light'
+  if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light'
+  return 'dark'
 }
 
 const theme = ref(getInitialTheme())
