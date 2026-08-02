@@ -21,10 +21,10 @@ const routes = [
     meta: { titleZh: '联系我们 - MySQL2PG', titleEn: 'Contact Us - MySQL2PG' },
   },
   {
-    path: '/faq',
-    name: 'faq',
-    component: () => import('../views/FAQPage.vue'),
-    meta: { titleZh: '常见问题 - MySQL2PG', titleEn: 'FAQ - MySQL2PG' },
+    path: '/manual',
+    name: 'manual',
+    component: () => import('../views/ManualPage.vue'),
+    meta: { titleZh: '使用手册 - MySQL2PG', titleEn: 'Manual - MySQL2PG' },
   },
   {
     path: '/:pathMatch(.*)*',

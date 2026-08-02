@@ -6,7 +6,7 @@
       <p class="notfound-desc">{{ t.notFound.desc }}</p>
       <div class="notfound-actions">
         <RouterLink to="/" class="btn-primary btn-lg">{{ t.notFound.backHome }}</RouterLink>
-        <RouterLink to="/faq" class="btn-ghost btn-lg">{{ t.notFound.goFaq }}</RouterLink>
+        <RouterLink to="/manual" class="btn-ghost btn-lg">{{ t.notFound.goFaq }}</RouterLink>
       </div>
     </div>
   </section>

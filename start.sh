@@ -115,6 +115,15 @@ ok "构建完成 → mysql2pg-web"
 # ── 停掉旧进程 ──
 stop_old
 
+# ── 释放端口（仅杀 LISTEN 进程，避免误杀客户端连接） ──
+PORT_PIDS=$(lsof -nP -iTCP:"$PORT" -sTCP:LISTEN -t 2>/dev/null || true)
+if [ -n "$PORT_PIDS" ]; then
+    warn "端口 $PORT 被监听 (PID: $PORT_PIDS)，正在释放..."
+    echo "$PORT_PIDS" | xargs kill -9 2>/dev/null || true
+    sleep 0.5
+    ok "端口 $PORT 已释放"
+fi
+
 # ── 启动服务 ──
 if [ "$DAEMON" = true ]; then
     echo ""

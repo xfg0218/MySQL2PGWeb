@@ -25,7 +25,7 @@ MySQL2PG Web 是 [MySQL2PG](https://github.com/xfg0218/MySQL2PG) 高性能数据
 
 | 功能 | 说明 |
 |------|------|
-| 🧭 Vue Router | 多页导航（`/`、`/services`、`/contact`、`/faq`），路由懒加载自动代码分割 |
+| 🧭 Vue Router | 多页导航（`/`、`/services`、`/contact`、`/manual`），路由懒加载自动代码分割 |
 | 🌓 主题切换 | 深色/浅色（Dark/Light）一键切换，CSS 变量驱动，选择持久化到 localStorage |
 | 🌐 双语支持 | 中文/英文完整翻译，所有板块内容实时切换，偏好保存到 localStorage |
 | 🎞 滚动动画 | IntersectionObserver + MutationObserver 驱动渐入动画，2 秒兜底机制确保可靠显示 |
@@ -33,7 +33,7 @@ MySQL2PG Web 是 [MySQL2PG](https://github.com/xfg0218/MySQL2PG) 高性能数据
 | 📱 响应式布局 | 桌面/平板/手机自适应网格布局 |
 | 🍔 移动端导航 | 汉堡菜单 + 下拉面板，路由切换自动关闭，点击遮罩关闭 |
 | 🔗 社交分享 | Open Graph + Twitter Card 元标签，1200×630 品牌分享图 |
-| 🔍 FAQ 搜索与筛选 | 实时关键词搜索 + 5 分类标签筛选，覆盖 15 个问题 |
+| 📖 使用手册 | 分类手册页面，10 个大类，可折叠侧边栏目录，滚动高亮，中英双语内容 |
 | 💨 缓存策略 | index.html 禁止缓存，hashed 资源永久缓存 — 发版后零缓存问题 |
 
 ### 网站内容板块
@@ -55,7 +55,7 @@ MySQL2PG Web 是 [MySQL2PG](https://github.com/xfg0218/MySQL2PG) 高性能数据
 | 快速开始 | `/` | 3 步配置 + 语法高亮命令示例 |
 | 开源版与商业版 | `/services` | 独立页面 — 开源版 vs 商业版功能对比矩阵 |
 | 联系我们 | `/contact` | 独立页面 — GitHub Issues / 邮件 / 微信社群 / 技术文档 |
-| 常见问题 FAQ | `/faq` | 独立页面 — 15 个问题，5 大分类（基础/类型转换/性能/安全运维/高级功能），支持实时搜索和分类标签筛选 |
+| 使用手册 | `/manual` | 独立页面 — 10 个分类章节（入门 / 迁移操作 / 配置指南 / 参考 / 故障排查 / 最佳实践 / CLI 参考 / 日志与监控 / 常见问题 / 附录），可折叠侧边栏目录 + 滚动高亮 |
 
 ---
 
@@ -98,20 +98,22 @@ MySQL2PGWeb/
 │   │   │   ├── FlowSteps.vue      # 8 步转换流程卡片
 │   │   │   ├── Versions.vue       # 版本兼容性
 │   │   │   ├── QuickStart.vue     # 快速开始指南
-│   │   │   ├── FAQ.vue            # 常见问题手风琴（原生 <details>/<summary>）
 │   │   │   ├── Services.vue       # 开源版与商业版对比
 │   │   │   ├── Contact.vue        # 联系渠道
+│   │   │   ├── NotFound.vue       # 404 页面组件
 │   │   │   └── FooterBar.vue      # 页脚
 │   │   ├── composables/
 │   │   │   ├── useTheme.js        # 主题切换 composable（dark/light + localStorage）
-│   │   │   └── useLang.js         # 国际化 composable（zh/en + 完整翻译字典）
+│   │   │   ├── useLang.js         # 国际化 composable（zh/en + 完整翻译字典）
+│   │   │   └── useManual.js       # 手册内容 composable（10 个分类章节，中英双语）
 │   │   ├── router/
-│   │   │   └── index.js           # Vue Router 配置（/、/services、/contact、/faq）
+│   │   │   └── index.js           # Vue Router 配置（/、/services、/contact、/manual）
 │   │   ├── views/
 │   │   │   ├── HomePage.vue       # 首页（所有主板块）
 │   │   │   ├── ServicesPage.vue   # 版本服务独立页
 │   │   │   ├── ContactPage.vue    # 联系我们独立页
-│   │   │   └── FAQPage.vue        # FAQ 独立页
+│   │   │   ├── ManualPage.vue     # 使用手册独立页（分类侧边栏 + 滚动高亮）
+│   │   │   └── NotFoundPage.vue   # 404 页面
 │   │   ├── App.vue                # 根应用（router-view + 滚动动画 + MutationObserver）
 │   │   └── main.js                # 入口文件
 │   ├── dist/                      # 构建产物（npm run build 生成）
@@ -253,7 +255,7 @@ make clean    # 删除 dist/、node_modules/、二进制文件
 
 ### 路由（Vue Router）
 
-- `createWebHistory` HTML5 history 模式，4 个路由：`/`、`/services`、`/contact`、`/faq`
+- `createWebHistory` HTML5 history 模式，4 个路由：`/`、`/services`、`/contact`、`/manual`
 - 独立页面懒加载，Vite 自动代码分割
 - Go 后端提供 SPA fallback — 所有非文件路由返回 `index.html`
 
@@ -304,7 +306,7 @@ make clean    # 删除 dist/、node_modules/、二进制文件
 | **QuickStart** | 3 步快速开始卡片，语法高亮 YAML 配置和 Shell 命令 |
 | **Services** | 开源版 vs 商业版功能对比矩阵（独立页面 `/services`） |
 | **Contact** | 4 个联系渠道卡片：GitHub Issues / 邮件 / 微信社群 / 技术文档（独立页面 `/contact`） |
-| **FAQ** | 15 个问题，5 大分类，实时搜索栏 + 药丸形分类筛选标签（含计数）+ emoji 分类徽章 + 无结果空状态。双列网格，原生 `<details>`/`<summary>` 手风琴（独立页面 `/faq`） |
+| **ManualPage** | 分类使用手册，10 个大类，可折叠侧边栏目录 + 滚动高亮（IntersectionObserver 驱动），`useManual` composable 提供中英双语内容（独立页面 `/manual`） |
 | **FooterBar** | 简洁页脚，GitHub 链接 + License + 版权信息 |
 
 ---
