@@ -562,8 +562,8 @@ const zh = {
 
   // Footer
   footer: {
-    text: 'MySQL2PG · Apache-2.0 License · Built with Go 1.24+',
-    copyright: '© 2026 MySQL2PG Contributors',
+    text: 'MySQL2PG · Apache-2.0 License',
+    copyright: '京ICP备2026047092号',
   },
 
   // 404
@@ -1090,8 +1090,8 @@ const en = {
 
   // Footer
   footer: {
-    text: 'MySQL2PG · Apache-2.0 License · Built with Go 1.24+',
-    copyright: '© 2026 MySQL2PG Contributors',
+    text: 'MySQL2PG · Apache-2.0 License',
+    copyright: '京ICP备2026047092号',
   },
 
   // 404

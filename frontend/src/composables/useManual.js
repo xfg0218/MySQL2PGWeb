@@ -1253,7 +1253,7 @@ tail -f errors.log</code></pre>`
 <tr><td>技术支持</td><td>社区</td><td>优先支持</td></tr>
 </tbody>
 </table>
-<p>开源版采用 Apache-2.0 许可证，可免费用于商业项目。</p>`
+<p>开源版采用 Apache-2.0 许可证。</p>`
       }
     ]
   }
