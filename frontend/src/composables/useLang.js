@@ -1091,7 +1091,7 @@ const en = {
   // Footer
   footer: {
     text: 'MySQL2PG · Apache-2.0 License',
-    copyright: '京ICP备2026047092号',
+    copyright: 'ICP Filing: Jing ICP Bei 2026047092',
   },
 
   // 404
